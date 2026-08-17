@@ -1,0 +1,65 @@
+[project]
+name = "nash"
+version = "2.16.3"
+description = "Nash — open-source AI chat for everyone. Python/Flask API backend."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Backboard.io" }]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: Flask",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "flask>=3.1",
+    "flask-cors>=5.0",
+    "backboard-sdk>=1.5.15,<2",
+    "httpx>=0.28",
+    "mcp>=1.28,<2",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "python-dotenv>=1.0",
+    "gunicorn>=23.0",
+    "pyyaml>=6.0",
+    "gevent",
+    "flask-limiter>=4.1.1",
+    "boto3>=1.35.0",
+    "cryptography>=44.0.0",
+    "flask-sock>=0.7.0",
+    "websockets>=16.0",
+    "pillow>=12.2.0",
+    "flask-compress>=1.24",
+]
+
+[project.urls]
+Homepage = "https://github.com/Backboard-io/Nash"
+Repository = "https://github.com/Backboard-io/Nash"
+Issues = "https://github.com/Backboard-io/Nash/issues"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "moto[dynamodb]>=5.0",
+]
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["api*"]
+exclude = ["client*", "packages*", "uploads*", "node_modules*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Default suite excludes slow / network-bound integration tests that are not
+# yet hermetic. Run the full set with: pytest tests/  (no `-m`)
+# Or just the extended bucket with: pytest -m extended tests/
+addopts = "-m 'not extended'"
+markers = [
+    "extended: slow or network-bound integration tests not run in default CI",
+]

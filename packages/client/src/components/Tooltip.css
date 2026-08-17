@@ -1,0 +1,36 @@
+/* §7's small overlay. It was 16px text in a 4.4px-radius box on
+   `--surface-primary` — white on a white page in light, with `color: black`
+   and `color: white` hardcoded past the tokens — and its dark rule was written
+   as `.tooltip:where(.dark, .dark *)`, a descendant selector that a portalled
+   tooltip escapes. Dark is the default here; light overrides from `html`. */
+.tooltip {
+  z-index: 150;
+  cursor: pointer;
+  pointer-events: auto;
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 12.5px;
+  line-height: 18px;
+  max-width: 320px;
+  word-wrap: break-word;
+  text-align: left;
+
+  background-color: var(--surface-hover);
+  color: var(--text-primary);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
+}
+
+html:not(.dark) .tooltip {
+  background-color: #ffffff;
+  color: var(--text-primary);
+  box-shadow:
+    0 4px 12px rgba(16, 18, 24, 0.09),
+    0 1px 3px rgba(16, 18, 24, 0.06),
+    inset 0 0 0 1px var(--border-light);
+}
+
+@media (max-width: 640px) {
+  .tooltip {
+    max-width: 200px;
+  }
+}

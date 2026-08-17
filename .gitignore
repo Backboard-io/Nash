@@ -1,0 +1,65 @@
+# ============================================================
+# Dependencies & build output
+# ============================================================
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+dist/
+test_bundle/
+.turbo/
+*.egg-info/
+
+# Lockfiles ARE committed for reproducibility:
+#   - package-lock.json
+#   - uv.lock
+#   - packages/data-provider/react-query/package-lock.json
+
+# ============================================================
+# Local config & secrets — never commit
+# ============================================================
+.env
+.env.local
+.env.*.local
+ssm-*.txt
+backboard-models.txt
+
+# ============================================================
+# User uploads / runtime data
+# ============================================================
+uploads/
+.backboard/
+
+# ============================================================
+# Test reports & coverage
+# ============================================================
+.pytest_cache/
+coverage/
+junit.xml
+test-results/
+playwright-report/
+# Playwright local artifacts (auth state, screenshots, traces)
+e2e/.*/
+
+# ============================================================
+# OS / IDE / local agent instructions
+# ============================================================
+.DS_Store
+.idea/
+.history/
+AGENTS.md
+.claude/
+.cursor/
+.kiro/
+
+# ============================================================
+# Generated / local tool output
+# ============================================================
+docs/*.pdf
+docs/*.html
+docs/*.pptx
+docs/work-log/
+docs/figma/
+graphify-out/
+# scripts/perf_probe.py --csv output
+perf.csv

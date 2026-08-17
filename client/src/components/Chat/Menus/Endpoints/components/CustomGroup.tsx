@@ -1,0 +1,87 @@
+import React from 'react';
+import type { TModelSpec } from 'librechat-data-provider';
+import { CustomMenu as Menu } from '../CustomMenu';
+import { ModelSpecItem } from './ModelSpecItem';
+import { useModelSelectorContext } from '../ModelSelectorContext';
+import GroupIcon from './GroupIcon';
+
+interface CustomGroupProps {
+  groupName: string;
+  specs: TModelSpec[];
+  groupIcon?: string;
+}
+
+export function CustomGroup({ groupName, specs, groupIcon }: CustomGroupProps) {
+  const { selectedValues } = useModelSelectorContext();
+  const { modelSpec: selectedSpec } = selectedValues;
+
+  if (!specs || specs.length === 0) {
+    return null;
+  }
+
+  return (
+    <Menu
+      id={`custom-group-${groupName}-menu`}
+      key={`custom-group-${groupName}`}
+      className="transition-opacity duration-hover ease-nash"
+      label={
+        <div className="group flex h-9 w-full min-w-0 cursor-pointer items-center justify-between text-[13px] leading-[19.5px]">
+          <div className="flex min-w-0 items-center gap-2">
+            {groupIcon && (
+              <div className="flex-shrink-0">
+                <GroupIcon iconURL={groupIcon} groupName={groupName} />
+              </div>
+            )}
+            <span className="truncate text-left text-text-primary">{groupName}</span>
+          </div>
+        </div>
+      }
+    >
+      {specs.map((spec: TModelSpec) => (
+        <ModelSpecItem key={spec.name} spec={spec} isSelected={selectedSpec === spec.name} />
+      ))}
+    </Menu>
+  );
+}
+
+export function collectCustomGroups(
+  modelSpecs: TModelSpec[],
+  mappedEndpoints: Array<{ value: string }>,
+): Array<[string, { specs: TModelSpec[]; groupIcon?: string }]> {
+  // Get all endpoint values to exclude them from custom groups
+  const endpointValues = new Set(mappedEndpoints.map((ep) => ep.value));
+
+  // Group specs by their group field (excluding endpoint-matched groups and ungrouped)
+  // Also track the groupIcon for each group (first spec with groupIcon wins)
+  const customGroups = modelSpecs.reduce(
+    (acc, spec) => {
+      if (!spec.group || endpointValues.has(spec.group)) {
+        return acc;
+      }
+      if (!acc[spec.group]) {
+        acc[spec.group] = { specs: [], groupIcon: undefined };
+      }
+      acc[spec.group].specs.push(spec);
+      // Use the first groupIcon found for the group
+      if (!acc[spec.group].groupIcon && spec.groupIcon) {
+        acc[spec.group].groupIcon = spec.groupIcon;
+      }
+      return acc;
+    },
+    {} as Record<string, { specs: TModelSpec[]; groupIcon?: string }>,
+  );
+
+  return Object.entries(customGroups);
+}
+
+export function renderCustomGroups(
+  modelSpecs: TModelSpec[],
+  mappedEndpoints: Array<{ value: string }>,
+) {
+  // Render each custom group
+  return collectCustomGroups(modelSpecs, mappedEndpoints).map(
+    ([groupName, { specs, groupIcon }]) => (
+      <CustomGroup key={groupName} groupName={groupName} specs={specs} groupIcon={groupIcon} />
+    ),
+  );
+}

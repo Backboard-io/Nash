@@ -1,0 +1,94 @@
+/* ============================================================
+   Sidebar flyouts — the org switcher and the More menu.
+
+   The stock `animate-popover-*` classes are a 150ms ease, which reads as a
+   blink at this size. The prototype's flyouts travel: they come out of the
+   panel's edge and settle, on the same curve as every other move in the app
+   (DESIGN.md §6 — 320ms rail slide, no overshoot).
+   ============================================================ */
+
+.nash-flyout {
+  opacity: 0;
+  transform: translateX(-10px) scale(0.98);
+  transform-origin: left center;
+  transition:
+    opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nash-flyout[data-enter] {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* Leaving is quicker than arriving — a dismissal should feel immediate. */
+.nash-flyout[data-leave] {
+  opacity: 0;
+  transform: translateX(-6px) scale(0.99);
+  transition:
+    opacity 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dropped below the trigger on a small screen, so it travels down instead. */
+.nash-flyout-down {
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top center;
+}
+
+.nash-flyout-down[data-leave] {
+  transform: translateY(-6px) scale(0.99);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nash-flyout,
+  .nash-flyout[data-enter],
+  .nash-flyout[data-leave] {
+    transition-duration: 0ms;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   Pinning — §14 date groups rule 2: a pinned chat leaves its date group
+   entirely and sits above the dates.
+   ============================================================ */
+
+/* Rows are absolutely positioned, and each one is keyed by the chat it shows
+   rather than by its index — so a chat that changes group keeps the same DOM
+   node and only its `top` moves. Transitioning `top` makes it travel there,
+   and every row that shifts to make room travels with it.
+
+   Only while a pin is actually changing. Left on permanently it would also
+   animate the rows that shift when a page of history loads. */
+.nash-reordering .ReactVirtualized__Grid__innerScrollContainer > div {
+  transition: top var(--nash-move) var(--nash-ease);
+}
+
+/* §12: state is carried by fill — one shape, two fills, no second glyph.
+   `fill: none` cannot interpolate, so the unfilled state is a transparent
+   fill and the swap becomes a dissolve rather than a flicker. */
+.nash-pin > svg {
+  transition: fill var(--nash-swap) var(--nash-ease);
+}
+
+.nash-pin:active {
+  transform: scale(0.9);
+  transition-duration: var(--nash-press);
+  transition-timing-function: var(--nash-ease-press);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nash-pin > svg,
+  .nash-pin:active {
+    transition-duration: 0.001ms;
+  }
+
+  .nash-reordering .ReactVirtualized__Grid__innerScrollContainer > div {
+    transition-duration: 0.001ms;
+  }
+
+  .nash-pin:active {
+    transform: none;
+  }
+}

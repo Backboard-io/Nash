@@ -1,0 +1,132 @@
+import {
+  detectPastedLanguage,
+  shouldPasteAsFile,
+  derivePastedTitle,
+  derivePastedFilename,
+  derivePastedFileName,
+} from '../pastedText';
+
+describe('pastedText', () => {
+  it('treats large prose documents as text', () => {
+    const result = detectPastedLanguage(`
+WikipediaThe Free Encyclopedia
+Search Wikipedia
+Search
+Donate
+Create account
+Log in
+Contents hide
+(Top)
+Uncrewed landings
+
+Crewed landings
+Scientific background
+Political background
+Early Soviet uncrewed lunar missions (1958-1965)
+Early U.S. uncrewed lunar missions (1958-1965)
+Soviet uncrewed soft landings (1966-1976)
+U.S. uncrewed soft landings (1966-1968)
+Transition from direct ascent landings to lunar orbit operations
+    `);
+
+    expect(result).toEqual({ language: 'Text', ext: 'txt', isCode: false });
+  });
+
+  it('does not classify prose with code words as JavaScript or SQL', () => {
+    const result = detectPastedLanguage(`
+This document describes how to select a function name and class structure for a
+proposal. The interface should be simple, and teams may import examples from
+past documents, but this is all explanatory prose rather than source code.
+    `);
+
+    expect(result).toEqual({ language: 'Text', ext: 'txt', isCode: false });
+  });
+
+  it('detects TypeScript snippets as code', () => {
+    const result = detectPastedLanguage(`
+interface User {
+  id: string;
+  name: string;
+}
+
+const formatUser = (user: User): string => {
+  return user.name;
+};
+    `);
+
+    expect(result).toEqual({ language: 'TypeScript', ext: 'ts', isCode: true });
+  });
+
+  it('detects Python snippets as code', () => {
+    const result = detectPastedLanguage(`
+from pathlib import Path
+
+def read_file(path: Path) -> str:
+    return path.read_text()
+    `);
+
+    expect(result).toEqual({ language: 'Python', ext: 'py', isCode: true });
+  });
+
+  it('detects JSON as code', () => {
+    const result = detectPastedLanguage('{"items":[{"id":"one","active":true}]}');
+
+    expect(result).toEqual({ language: 'JSON', ext: 'json', isCode: true });
+  });
+
+  it('keeps markdown as a text document', () => {
+    const result = detectPastedLanguage(`
+# Project notes
+
+- First item
+- Second item
+
+[Docs](https://example.com)
+    `);
+
+    expect(result).toEqual({ language: 'Markdown', ext: 'md', isCode: false });
+  });
+
+  it('only turns large pasted content into an attachment', () => {
+    expect(shouldPasteAsFile('short paste')).toBe(false);
+    expect(shouldPasteAsFile(Array.from({ length: 8 }, (_, i) => `line ${i}`).join('\n'))).toBe(
+      true,
+    );
+  });
+
+  describe('derivePastedTitle', () => {
+    it('uses the first meaningful line and truncates', () => {
+      expect(derivePastedTitle('The quick brown fox', false)).toBe('The quick brown fox');
+      expect(derivePastedTitle('a'.repeat(80), false)).toHaveLength(49); // 48 + ellipsis
+    });
+    it('strips leading comment/markdown markers but keeps code identifiers', () => {
+      expect(derivePastedTitle('# My Heading\nbody', false)).toBe('My Heading');
+      expect(derivePastedTitle('// TODO: refactor\ncode', true)).toBe('TODO: refactor');
+      expect(derivePastedTitle('def process_order(items):', true)).toBe('def process_order(items):');
+    });
+    it('falls back to a generic label when empty', () => {
+      expect(derivePastedTitle('   \n\n', false)).toBe('Pasted text');
+      expect(derivePastedTitle('', true)).toBe('Pasted code');
+    });
+  });
+
+  describe('derivePastedFilename', () => {
+    it('builds a filename-safe base with the right extension', () => {
+      expect(derivePastedFilename('The quick brown fox', false)).toBe('The_quick_brown_fox.txt');
+      expect(derivePastedFilename('def process_order(items):', true, 'py')).toMatch(/\.py$/);
+      expect(derivePastedFilename('', false)).toBe('Pasted_text.txt');
+    });
+  });
+
+  describe('derivePastedFileName (clipboard files)', () => {
+    it('labels generic/nameless blobs by kind', () => {
+      expect(derivePastedFileName('image.png', 'image/png')).toBe('Pasted image.png');
+      expect(derivePastedFileName('', 'image/png')).toBe('Pasted image.png');
+      expect(derivePastedFileName('screenshot 2024.png', 'image/png')).toBe('Pasted image.png');
+    });
+    it('keeps a real, descriptive filename', () => {
+      expect(derivePastedFileName('report.pdf', 'application/pdf')).toBe('report.pdf');
+      expect(derivePastedFileName('recording.wav', 'audio/wav')).toBe('recording.wav');
+    });
+  });
+});

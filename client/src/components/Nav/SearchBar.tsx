@@ -1,0 +1,154 @@
+import React, { forwardRef, useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import debounce from 'lodash/debounce';
+import { useRecoilState } from 'recoil';
+import { Search, X } from 'lucide-react';
+import { QueryKeys } from 'librechat-data-provider';
+import { useQueryClient } from '@tanstack/react-query';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocalize, useNewConvo } from '~/hooks';
+import { cn } from '~/utils';
+import store from '~/store';
+
+type SearchBarProps = {
+  isSmallScreen?: boolean;
+};
+
+const SearchBar = forwardRef((props: SearchBarProps, ref: React.Ref<HTMLDivElement>) => {
+  const localize = useLocalize();
+  const location = useLocation();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { isSmallScreen } = props;
+
+  const [text, setText] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [showClearIcon, setShowClearIcon] = useState(false);
+
+  const { newConversation: newConvo } = useNewConvo();
+  const [search, setSearchState] = useRecoilState(store.search);
+
+  const clearSearch = useCallback(
+    (pathname?: string) => {
+      if (pathname?.includes('/search') || pathname === '/c/new') {
+        queryClient.removeQueries([QueryKeys.allConversations]);
+        queryClient.removeQueries([QueryKeys.archivedConversations]);
+        newConvo({ disableFocus: true });
+        navigate('/c/new');
+      }
+    },
+    [newConvo, navigate, queryClient],
+  );
+
+  const clearText = useCallback(
+    (pathname?: string) => {
+      setShowClearIcon(false);
+      setText('');
+      setSearchState((prev) => ({
+        ...prev,
+        query: '',
+        debouncedQuery: '',
+        isTyping: false,
+      }));
+      clearSearch(pathname);
+      inputRef.current?.focus();
+    },
+    [setSearchState, clearSearch],
+  );
+
+  const handleKeyUp = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      const { value } = e.target as HTMLInputElement;
+      if (e.key === 'Backspace' && value === '') {
+        clearText(location.pathname);
+      }
+    },
+    [clearText, location.pathname],
+  );
+
+  const sendRequest = useCallback(
+    (value: string) => {
+      if (!value) {
+        return;
+      }
+      queryClient.invalidateQueries([QueryKeys.allConversations]);
+      queryClient.invalidateQueries([QueryKeys.archivedConversations]);
+    },
+    [queryClient],
+  );
+
+  const debouncedSetDebouncedQuery = useMemo(
+    () =>
+      debounce((value: string) => {
+        setSearchState((prev) => ({ ...prev, debouncedQuery: value, isTyping: false }));
+        sendRequest(value);
+      }, 500),
+    [setSearchState, sendRequest],
+  );
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setShowClearIcon(value.length > 0);
+    setText(value);
+    setSearchState((prev) => ({
+      ...prev,
+      query: value,
+      isTyping: true,
+    }));
+    debouncedSetDebouncedQuery(value);
+    if (value.length > 0 && location.pathname === '/search') {
+      navigate('/c/new', { replace: true });
+    }
+  };
+
+  // Automatically set isTyping to false when loading is done and debouncedQuery matches query
+  // (prevents stuck loading state if input is still focused)
+  useEffect(() => {
+    if (search.isTyping && !search.isSearching && search.debouncedQuery === search.query) {
+      setSearchState((prev) => ({ ...prev, isTyping: false }));
+    }
+  }, [search.isTyping, search.isSearching, search.debouncedQuery, search.query, setSearchState]);
+
+  return (
+    <div
+      ref={ref}
+      // Figma search field: the surface fill alone, no border, and the fill is
+      // --surface (#131517 / #F6F6F7) — not the lighter tertiary-alt.
+      className="group relative flex h-10 flex-shrink-0 items-center gap-[9px] rounded-[10px] bg-surface-secondary px-[11px] text-text-primary transition-colors"
+    >
+      <Search aria-hidden="true" size={14} className="flex-shrink-0 text-text-secondary" />
+      <input
+        type="text"
+        ref={inputRef}
+        className="m-0 mr-0 w-full border-none bg-transparent p-0 text-[12.5px] leading-[19.5px] placeholder:text-text-secondary-alt focus-visible:outline-none"
+        value={text}
+        onChange={onChange}
+        onKeyDown={(e) => {
+          e.code === 'Space' ? e.stopPropagation() : null;
+        }}
+        aria-label={localize('com_nav_search_placeholder')}
+        placeholder={localize('com_nav_search_placeholder')}
+        onKeyUp={handleKeyUp}
+        onFocus={() => setSearchState((prev) => ({ ...prev, isSearching: true }))}
+        onBlur={() => setSearchState((prev) => ({ ...prev, isSearching: false }))}
+        autoComplete="off"
+        dir="auto"
+      />
+      <button
+        type="button"
+        aria-label={localize('com_ui_clear_search')}
+        className={cn(
+          'absolute right-[9px] flex h-5 w-5 items-center justify-center rounded-full border-none bg-transparent p-0 transition-opacity duration-hover',
+          showClearIcon ? 'opacity-100' : 'opacity-0',
+          isSmallScreen === true ? 'right-[16px]' : '',
+        )}
+        onClick={() => clearText(location.pathname)}
+        tabIndex={showClearIcon ? 0 : -1}
+        disabled={!showClearIcon}
+      >
+        <X className="h-3.5 w-3.5 cursor-pointer text-text-secondary" aria-hidden="true" />
+      </button>
+    </div>
+  );
+});
+
+export default SearchBar;

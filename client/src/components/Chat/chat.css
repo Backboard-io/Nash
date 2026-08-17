@@ -1,0 +1,158 @@
+/* ============================================================
+   Chat surface — spacing, type and motion from the Nash prototype
+   (DESIGN.md §3 and §6, mirroring nash-app's shell.css + motion.js).
+
+   Scoped under .nash-chat so the same components keep their current
+   behaviour anywhere else they are mounted (search results, shared
+   links, the folder views).
+   ============================================================ */
+
+/* One motion vocabulary for the whole app — §10: nothing declares its own
+   curve. These live on :root rather than .nash-chat because the sidebar moves
+   on the same timings, and a second copy of the numbers over there is how two
+   surfaces start to drift apart. */
+:root {
+  --nash-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --nash-ease-press: cubic-bezier(0.65, 0, 0.35, 1);
+  --nash-press: 90ms;
+  --nash-hover: 160ms;
+  --nash-swap: 260ms;
+  --nash-move: 380ms;
+}
+
+.nash-chat {
+  /* Message body: 13.5px at 1.62 rather than 16px at 1.375. Anything
+     tighter than 160% reads cramped at this size. */
+  --markdown-font-size: 13.5px;
+}
+
+.nash-chat .markdown {
+  line-height: 1.62;
+}
+
+.nash-chat .markdown h2 {
+  letter-spacing: -0.2px;
+}
+
+/* ---------------- thread rhythm ---------------- */
+
+/* 18px between turns. The message row's own p-4/py-2 supplies 8 top and
+   bottom, so the pair lands on the prototype's gap without touching the
+   padding that the hover actions rely on. */
+.nash-chat .message-render {
+  padding-block: 1px;
+}
+
+/* A turn arrives by rising into place — 8px over 320ms, never a pop. */
+.nash-chat .message-render {
+  animation: nash-msg-in 0.32s var(--nash-ease) both;
+}
+
+@keyframes nash-msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Prose owns its internal rhythm, not its outer edges. A paragraph carries
+   0.857em top and bottom, which is right between blocks and wrong at the
+   boundaries: it was being added to the model label's 9px above and to the
+   action row's gap below, so a reply floated in the middle of its own turn.
+   Zeroed at both ends, the label and the action row control those two gaps
+   on their own — one owner per gap. */
+.nash-chat .message-content > :first-child {
+  margin-top: 0;
+}
+
+.nash-chat .message-content > :last-child {
+  margin-bottom: 0;
+}
+
+/* Inline code takes the surface a shade off its own background, so it
+   still reads inside the user's bubble. */
+.nash-chat .markdown code {
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 12.5px;
+}
+
+/* "Thinking" shimmers rather than blinking — light sweeps across the word
+   while the reply is on its way (1.6s linear, DESIGN.md §6). */
+.nash-chat .thinking,
+.nash-chat [data-thinking] {
+  font-size: 14.5px;
+  color: var(--text-tertiary);
+  background: linear-gradient(
+    100deg,
+    var(--text-tertiary) 30%,
+    var(--text-primary) 50%,
+    var(--text-tertiary) 70%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nash-shimmer 1.6s linear infinite;
+}
+
+@keyframes nash-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -20% 0;
+  }
+}
+
+/* ---------------- interactions ---------------- */
+
+/* Message actions: 28px square, 7px radius, tertiary until hovered, then
+   primary on the surface fill. They fade in with the row rather than
+   sliding. */
+.nash-chat .message-render .hover-button,
+.nash-chat .message-render button[title] {
+  border-radius: 7px;
+}
+
+.nash-chat .message-render button[title]:hover:not(:disabled) {
+  color: var(--text-primary);
+  background-color: var(--surface-chat);
+}
+
+.nash-chat .message-render button[title]:active:not(:disabled) {
+  transform: scale(0.9);
+  transition-duration: var(--nash-press);
+}
+
+/* Hover is 160ms, press is 90ms on a sharper curve — a press should feel
+   like it stops, a hover like it settles. */
+.nash-chat button,
+.nash-chat a[role='button'] {
+  transition-timing-function: var(--nash-ease);
+  transition-duration: var(--nash-hover);
+}
+
+/* The composer's round controls take a real press: 0.94 in the prototype,
+   which is enough to feel without the button appearing to move. */
+.nash-chat .rounded-full:active:not(:disabled) {
+  transform: scale(0.94);
+  transition-duration: var(--nash-press);
+  transition-timing-function: var(--nash-ease-press);
+}
+
+/* Tool row and any other height reveal uses the 380ms move. */
+.nash-chat [class*='min-h-\\[152px\\]'],
+.nash-chat .transition-all {
+  transition-timing-function: var(--nash-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nash-chat .rounded-full:active:not(:disabled) {
+    transform: none;
+  }
+}
