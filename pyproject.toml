@@ -30,7 +30,7 @@ dependencies = [
     "boto3>=1.35.0",
     "cryptography>=44.0.0",
     "flask-sock>=0.7.0",
-    "websockets>=16.0",
+    "websockets>=17.0.1",
     "pillow>=12.2.0",
     "flask-compress>=1.24",
 ]
