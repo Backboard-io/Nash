@@ -42,7 +42,7 @@ Issues = "https://github.com/Backboard-io/Nash/issues"
 
 [dependency-groups]
 dev = [
-    "pytest>=8.0",
+    "pytest>=9.1.1",
     "moto[dynamodb]>=5.0",
 ]
 
