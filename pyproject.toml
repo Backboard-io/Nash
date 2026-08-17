@@ -16,7 +16,7 @@ classifiers = [
 ]
 dependencies = [
     "flask>=3.1",
-    "flask-cors>=5.0",
+    "flask-cors>=6.0.5",
     "backboard-sdk>=1.5.15,<2",
     "httpx>=0.28",
     "mcp>=1.28,<2",
