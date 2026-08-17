@@ -1,0 +1,50 @@
+services:
+  nash:
+    mem_limit: 4096m
+    cpuset: '0,1,2,3'
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 4096m
+        reservations:
+          cpus: '4'
+          memory: 4096m
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+    platform: linux/amd64
+    ports:
+      - "3080:3080"
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3080
+      DOMAIN_CLIENT: http://localhost:3080
+      DOMAIN_SERVER: http://localhost:3080
+      DYNAMO_ENDPOINT: http://dynamodb-local:8000
+    volumes:
+      - uploads:/app/uploads
+    restart: unless-stopped
+    depends_on:
+      dynamodb-local:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3080/api/health"]
+      interval: 20s
+      timeout: 19s
+      retries: 3
+      start_period: 1s
+
+  dynamodb-local:
+    image: amazon/dynamodb-local:1.25.0
+    ports:
+      - "8100:8000"
+    command: "-jar DynamoDBLocal.jar -sharedDb -inMemory"
+    restart: unless-stopped
+
+volumes:
+  uploads:

@@ -1,0 +1,74 @@
+name: Bug report
+description: Something is broken or behaves unexpectedly.
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report!
+
+        For **security vulnerabilities**, please follow [SECURITY.md](../../SECURITY.md)
+        instead of opening a public issue.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of the bug.
+      placeholder: When I do X, Y happens instead of Z.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: A minimal sequence of steps we can follow.
+      placeholder: |
+        1. Run `make dev`
+        2. Open http://localhost:3090
+        3. Click "..."
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Nash version / commit
+      description: Output of `git rev-parse HEAD` or the release tag you are on.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: How are you running Nash?
+      options:
+        - Local dev (`make dev`)
+        - Docker (`docker compose`)
+        - Self-hosted (other container platform / VM)
+        - Other (please describe)
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS / browser
+      placeholder: macOS 14.5, Chrome 126
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Trim to the relevant lines. Redact secrets.
+      render: shell

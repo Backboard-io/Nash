@@ -1,0 +1,8 @@
+[
+    {
+        "body": "**Initial OSS release**\n\n- Nash is now available as open source. See the README for setup.\n- Backboard API-key login is the supported login path.\n- Add your own entries here as you ship changes.",
+        "publishedAt": "2026-05-20T00:00:00Z",
+        "tagName": "v1.0.0",
+        "title": "v1.0.0 — Initial OSS release"
+    }
+]

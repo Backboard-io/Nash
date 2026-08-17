@@ -1,0 +1,1 @@
+export { useInitQuery } from './queries';
