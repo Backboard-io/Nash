@@ -31,7 +31,7 @@ dependencies = [
     "cryptography>=44.0.0",
     "flask-sock>=0.7.0",
     "websockets>=16.0",
-    "pillow>=12.2.0",
+    "pillow>=12.3.0",
     "flask-compress>=1.24",
 ]
 
