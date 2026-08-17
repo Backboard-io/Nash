@@ -1,0 +1,2427 @@
+version: 1.3.4
+cache: true
+interface:
+  webSearch: true
+  endpointsMenu: true
+  modelSelect: true
+  parameters: true
+  sidePanel: true
+  presets: false
+  bookmarks: true
+  agents:
+    use: true
+    create: true
+speech:
+  speechTab:
+    textToSpeech: false
+    speechToText: false
+memory:
+  disabled: false
+registration:
+  socialLogins:
+  - google
+endpoints:
+  custom:
+  - name: OpenAI
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - openai/gpt-4.1
+      - openai/gpt-4.1-mini
+      - openai/gpt-4.1-nano
+      - openai/gpt-4o
+      - openai/gpt-4o-mini
+      - openai/gpt-5
+      - openai/gpt-5-chat-latest
+      - openai/gpt-5-codex
+      - openai/gpt-5-mini
+      - openai/gpt-5-nano
+      - openai/gpt-5.1
+      - openai/gpt-5.1-chat-latest
+      - openai/gpt-5.1-codex
+      - openai/gpt-5.1-codex-max
+      - openai/gpt-5.1-codex-mini
+      - openai/gpt-5.2
+      - openai/gpt-5.2-chat-latest
+      - openai/gpt-5.2-codex
+      - openai/gpt-5.3-chat-latest
+      - openai/gpt-5.3-codex
+      - openai/gpt-5.4
+      - openai/gpt-5.4-mini
+      - openai/gpt-5.4-nano
+      - openai/gpt-5.5
+      - openai/o1
+      - openai/o3
+      - openai/o3-mini
+      - openai/o4-mini
+      fetch: false
+    selectorTiers:
+      fast:
+      - openai/gpt-4.1-mini
+      - openai/gpt-4o-mini
+      - openai/gpt-5-mini
+      - openai/gpt-5-nano
+      - openai/o3-mini
+      powerful:
+      - openai/gpt-5
+      - openai/o3
+    titleConvo: true
+    titleModel: openai/gpt-4o-mini
+    modelDisplayLabel: OpenAI
+  - name: Anthropic
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - anthropic/claude-haiku-4-5-20251001
+      - anthropic/claude-opus-4-1-20250805
+      - anthropic/claude-opus-4-20250514
+      - anthropic/claude-opus-4-5-20251101
+      - anthropic/claude-opus-4-6
+      - anthropic/claude-opus-4-7
+      - anthropic/claude-sonnet-4-20250514
+      - anthropic/claude-sonnet-4-5-20250929
+      - anthropic/claude-sonnet-4-6
+      fetch: false
+    selectorTiers:
+      fast:
+      - anthropic/claude-haiku-4-5-20251001
+      powerful:
+      - anthropic/claude-opus-4-1-20250805
+      - anthropic/claude-opus-4-20250514
+      - anthropic/claude-opus-4-5-20251101
+      - anthropic/claude-opus-4-6
+      - anthropic/claude-sonnet-4-6
+    titleConvo: true
+    titleModel: anthropic/claude-sonnet-4-6
+    modelDisplayLabel: Anthropic
+  - name: Google
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - google/gemini-2.5-flash
+      - google/gemini-2.5-flash-lite
+      - google/gemini-2.5-pro
+      - google/gemini-3-flash-preview
+      - google/gemini-3.1-flash-lite-preview
+      - google/gemini-3.1-pro-preview
+      fetch: false
+    selectorTiers:
+      fast:
+      - google/gemini-2.5-flash
+      - google/gemini-2.5-flash-lite
+      - google/gemini-3-flash-preview
+      - google/gemini-3.1-flash-lite-preview
+      powerful:
+      - google/gemini-2.5-pro
+      - google/gemini-3.1-pro-preview
+    titleConvo: true
+    titleModel: google/gemini-2.5-flash
+    modelDisplayLabel: Google
+  - name: xAI
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - xai/grok-4-0709
+      - xai/grok-4-1-fast-non-reasoning
+      - xai/grok-4-1-fast-reasoning
+      - xai/grok-4-fast-non-reasoning
+      - xai/grok-4-fast-reasoning
+      - xai/grok-4.20-0309-non-reasoning
+      - xai/grok-4.20-0309-reasoning
+      - xai/grok-4.20-multi-agent-0309
+      - xai/grok-4.3
+      - xai/grok-code-fast-1
+      fetch: false
+    selectorTiers:
+      fast:
+      - xai/grok-4-1-fast-non-reasoning
+      - xai/grok-4-fast-non-reasoning
+      - xai/grok-4-fast-reasoning
+      - xai/grok-code-fast-1
+      powerful:
+      - xai/grok-4-0709
+      - xai/grok-4-1-fast-reasoning
+    titleConvo: true
+    titleModel: xai/grok-4-1-fast-non-reasoning
+    modelDisplayLabel: xAI
+  - name: OpenRouter
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - openrouter/ai21/jamba-large-1.7
+      - openrouter/aion-labs/aion-1.0
+      - openrouter/aion-labs/aion-1.0-mini
+      - openrouter/aion-labs/aion-2.0
+      - openrouter/aion-labs/aion-rp-llama-3.1-8b
+      - openrouter/alfredpros/codellama-7b-instruct-solidity
+      - openrouter/alibaba/tongyi-deepresearch-30b-a3b
+      - openrouter/allenai/olmo-3-32b-think
+      - openrouter/allenai/olmo-3.1-32b-instruct
+      - openrouter/alpindale/goliath-120b
+      - openrouter/amazon/nova-2-lite-v1
+      - openrouter/amazon/nova-lite-v1
+      - openrouter/amazon/nova-micro-v1
+      - openrouter/amazon/nova-premier-v1
+      - openrouter/amazon/nova-pro-v1
+      - openrouter/anthracite-org/magnum-v4-72b
+      - openrouter/anthropic/claude-3-haiku
+      - openrouter/anthropic/claude-3.5-haiku
+      - openrouter/anthropic/claude-3.7-sonnet
+      - openrouter/anthropic/claude-3.7-sonnet:thinking
+      - openrouter/anthropic/claude-haiku-4.5
+      - openrouter/anthropic/claude-opus-4
+      - openrouter/anthropic/claude-opus-4.1
+      - openrouter/anthropic/claude-opus-4.5
+      - openrouter/anthropic/claude-opus-4.6
+      - openrouter/anthropic/claude-opus-4.6-fast
+      - openrouter/anthropic/claude-opus-4.7
+      - openrouter/anthropic/claude-sonnet-4
+      - openrouter/anthropic/claude-sonnet-4.5
+      - openrouter/anthropic/claude-sonnet-4.6
+      - openrouter/arcee-ai/coder-large
+      - openrouter/arcee-ai/maestro-reasoning
+      - openrouter/arcee-ai/spotlight
+      - openrouter/arcee-ai/trinity-large-preview
+      - openrouter/arcee-ai/trinity-large-thinking
+      - openrouter/arcee-ai/trinity-mini
+      - openrouter/arcee-ai/virtuoso-large
+      - openrouter/baidu/ernie-4.5-21b-a3b
+      - openrouter/baidu/ernie-4.5-21b-a3b-thinking
+      - openrouter/baidu/ernie-4.5-300b-a47b
+      - openrouter/baidu/ernie-4.5-vl-28b-a3b
+      - openrouter/baidu/ernie-4.5-vl-424b-a47b
+      - openrouter/baidu/qianfan-ocr-fast:free
+      - openrouter/bytedance-seed/seed-1.6
+      - openrouter/bytedance-seed/seed-1.6-flash
+      - openrouter/bytedance-seed/seed-2.0-lite
+      - openrouter/bytedance-seed/seed-2.0-mini
+      - openrouter/bytedance/ui-tars-1.5-7b
+      - openrouter/cognitivecomputations/dolphin-mistral-24b-venice-edition:free
+      - openrouter/cohere/command-a
+      - openrouter/cohere/command-r-08-2024
+      - openrouter/cohere/command-r-plus-08-2024
+      - openrouter/cohere/command-r7b-12-2024
+      - openrouter/deepcogito/cogito-v2.1-671b
+      - openrouter/deepseek/deepseek-chat
+      - openrouter/deepseek/deepseek-chat-v3-0324
+      - openrouter/deepseek/deepseek-chat-v3.1
+      - openrouter/deepseek/deepseek-r1
+      - openrouter/deepseek/deepseek-r1-0528
+      - openrouter/deepseek/deepseek-r1-distill-llama-70b
+      - openrouter/deepseek/deepseek-r1-distill-qwen-32b
+      - openrouter/deepseek/deepseek-v3.1-terminus
+      - openrouter/deepseek/deepseek-v3.2
+      - openrouter/deepseek/deepseek-v3.2-exp
+      - openrouter/deepseek/deepseek-v3.2-speciale
+      - openrouter/deepseek/deepseek-v4-flash
+      - openrouter/deepseek/deepseek-v4-pro
+      - openrouter/essentialai/rnj-1-instruct
+      - openrouter/google/gemini-2.0-flash-001
+      - openrouter/google/gemini-2.0-flash-lite-001
+      - openrouter/google/gemini-2.5-flash
+      - openrouter/google/gemini-2.5-flash-lite
+      - openrouter/google/gemini-2.5-flash-lite-preview-09-2025
+      - openrouter/google/gemini-2.5-pro
+      - openrouter/google/gemini-2.5-pro-preview
+      - openrouter/google/gemini-2.5-pro-preview-05-06
+      - openrouter/google/gemini-3-flash-preview
+      - openrouter/google/gemini-3.1-flash-lite-preview
+      - openrouter/google/gemini-3.1-pro-preview
+      - openrouter/google/gemini-3.1-pro-preview-customtools
+      - openrouter/google/gemma-2-27b-it
+      - openrouter/google/gemma-3-12b-it
+      - openrouter/google/gemma-3-12b-it:free
+      - openrouter/google/gemma-3-27b-it
+      - openrouter/google/gemma-3-27b-it:free
+      - openrouter/google/gemma-3-4b-it
+      - openrouter/google/gemma-3-4b-it:free
+      - openrouter/google/gemma-3n-e2b-it:free
+      - openrouter/google/gemma-3n-e4b-it
+      - openrouter/google/gemma-3n-e4b-it:free
+      - openrouter/google/gemma-4-26b-a4b-it
+      - openrouter/google/gemma-4-26b-a4b-it:free
+      - openrouter/google/gemma-4-31b-it
+      - openrouter/google/gemma-4-31b-it:free
+      - openrouter/gryphe/mythomax-l2-13b
+      - openrouter/ibm-granite/granite-4.0-h-micro
+      - openrouter/ibm-granite/granite-4.1-8b
+      - openrouter/inception/mercury-2
+      - openrouter/inclusionai/ling-2.6-1t:free
+      - openrouter/inclusionai/ling-2.6-flash
+      - openrouter/inflection/inflection-3-pi
+      - openrouter/inflection/inflection-3-productivity
+      - openrouter/kwaipilot/kat-coder-pro-v2
+      - openrouter/liquid/lfm-2-24b-a2b
+      - openrouter/liquid/lfm-2.5-1.2b-instruct:free
+      - openrouter/liquid/lfm-2.5-1.2b-thinking:free
+      - openrouter/mancer/weaver
+      - openrouter/meta-llama/llama-3-70b-instruct
+      - openrouter/meta-llama/llama-3-8b-instruct
+      - openrouter/meta-llama/llama-3.1-70b-instruct
+      - openrouter/meta-llama/llama-3.1-8b-instruct
+      - openrouter/meta-llama/llama-3.2-11b-vision-instruct
+      - openrouter/meta-llama/llama-3.2-1b-instruct
+      - openrouter/meta-llama/llama-3.2-3b-instruct
+      - openrouter/meta-llama/llama-3.2-3b-instruct:free
+      - openrouter/meta-llama/llama-3.3-70b-instruct
+      - openrouter/meta-llama/llama-3.3-70b-instruct:free
+      - openrouter/meta-llama/llama-4-maverick
+      - openrouter/meta-llama/llama-4-scout
+      - openrouter/meta-llama/llama-guard-3-8b
+      - openrouter/meta-llama/llama-guard-4-12b
+      - openrouter/microsoft/phi-4
+      - openrouter/microsoft/phi-4-mini-instruct
+      - openrouter/microsoft/wizardlm-2-8x22b
+      - openrouter/minimax/minimax-01
+      - openrouter/minimax/minimax-m1
+      - openrouter/minimax/minimax-m2
+      - openrouter/minimax/minimax-m2-her
+      - openrouter/minimax/minimax-m2.1
+      - openrouter/minimax/minimax-m2.5
+      - openrouter/minimax/minimax-m2.5:free
+      - openrouter/minimax/minimax-m2.7
+      - openrouter/mistralai/codestral-2508
+      - openrouter/mistralai/devstral-2512
+      - openrouter/mistralai/devstral-medium
+      - openrouter/mistralai/devstral-small
+      - openrouter/mistralai/ministral-14b-2512
+      - openrouter/mistralai/ministral-3b-2512
+      - openrouter/mistralai/ministral-8b-2512
+      - openrouter/mistralai/mistral-7b-instruct-v0.1
+      - openrouter/mistralai/mistral-large
+      - openrouter/mistralai/mistral-large-2407
+      - openrouter/mistralai/mistral-large-2411
+      - openrouter/mistralai/mistral-large-2512
+      - openrouter/mistralai/mistral-medium-3
+      - openrouter/mistralai/mistral-medium-3-5
+      - openrouter/mistralai/mistral-medium-3.1
+      - openrouter/mistralai/mistral-nemo
+      - openrouter/mistralai/mistral-saba
+      - openrouter/mistralai/mistral-small-24b-instruct-2501
+      - openrouter/mistralai/mistral-small-2603
+      - openrouter/mistralai/mistral-small-3.1-24b-instruct
+      - openrouter/mistralai/mistral-small-3.2-24b-instruct
+      - openrouter/mistralai/mixtral-8x22b-instruct
+      - openrouter/mistralai/mixtral-8x7b-instruct
+      - openrouter/mistralai/pixtral-large-2411
+      - openrouter/mistralai/voxtral-small-24b-2507
+      - openrouter/moonshotai/kimi-k2
+      - openrouter/moonshotai/kimi-k2-0905
+      - openrouter/moonshotai/kimi-k2-thinking
+      - openrouter/moonshotai/kimi-k2.5
+      - openrouter/moonshotai/kimi-k2.6
+      - openrouter/morph/morph-v3-fast
+      - openrouter/morph/morph-v3-large
+      - openrouter/nex-agi/deepseek-v3.1-nex-n1
+      - openrouter/nousresearch/hermes-2-pro-llama-3-8b
+      - openrouter/nousresearch/hermes-3-llama-3.1-405b
+      - openrouter/nousresearch/hermes-3-llama-3.1-405b:free
+      - openrouter/nousresearch/hermes-3-llama-3.1-70b
+      - openrouter/nousresearch/hermes-4-405b
+      - openrouter/nousresearch/hermes-4-70b
+      - openrouter/nvidia/llama-3.1-nemotron-70b-instruct
+      - openrouter/nvidia/llama-3.3-nemotron-super-49b-v1.5
+      - openrouter/nvidia/nemotron-3-nano-30b-a3b
+      - openrouter/nvidia/nemotron-3-nano-30b-a3b:free
+      - openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+      - openrouter/nvidia/nemotron-3-super-120b-a12b
+      - openrouter/nvidia/nemotron-3-super-120b-a12b:free
+      - openrouter/nvidia/nemotron-nano-12b-v2-vl
+      - openrouter/nvidia/nemotron-nano-12b-v2-vl:free
+      - openrouter/nvidia/nemotron-nano-9b-v2
+      - openrouter/nvidia/nemotron-nano-9b-v2:free
+      - openrouter/openai/gpt-3.5-turbo
+      - openrouter/openai/gpt-3.5-turbo-0613
+      - openrouter/openai/gpt-3.5-turbo-16k
+      - openrouter/openai/gpt-3.5-turbo-instruct
+      - openrouter/openai/gpt-4
+      - openrouter/openai/gpt-4-0314
+      - openrouter/openai/gpt-4-1106-preview
+      - openrouter/openai/gpt-4-turbo
+      - openrouter/openai/gpt-4-turbo-preview
+      - openrouter/openai/gpt-4.1
+      - openrouter/openai/gpt-4.1-mini
+      - openrouter/openai/gpt-4.1-nano
+      - openrouter/openai/gpt-4o
+      - openrouter/openai/gpt-4o-2024-05-13
+      - openrouter/openai/gpt-4o-2024-08-06
+      - openrouter/openai/gpt-4o-2024-11-20
+      - openrouter/openai/gpt-4o-mini
+      - openrouter/openai/gpt-4o-mini-2024-07-18
+      - openrouter/openai/gpt-4o-mini-search-preview
+      - openrouter/openai/gpt-4o-search-preview
+      - openrouter/openai/gpt-5
+      - openrouter/openai/gpt-5-chat
+      - openrouter/openai/gpt-5-codex
+      - openrouter/openai/gpt-5-mini
+      - openrouter/openai/gpt-5-nano
+      - openrouter/openai/gpt-5-pro
+      - openrouter/openai/gpt-5.1
+      - openrouter/openai/gpt-5.1-chat
+      - openrouter/openai/gpt-5.1-codex
+      - openrouter/openai/gpt-5.1-codex-max
+      - openrouter/openai/gpt-5.1-codex-mini
+      - openrouter/openai/gpt-5.2
+      - openrouter/openai/gpt-5.2-chat
+      - openrouter/openai/gpt-5.2-codex
+      - openrouter/openai/gpt-5.2-pro
+      - openrouter/openai/gpt-5.3-chat
+      - openrouter/openai/gpt-5.3-codex
+      - openrouter/openai/gpt-5.4
+      - openrouter/openai/gpt-5.4-mini
+      - openrouter/openai/gpt-5.4-nano
+      - openrouter/openai/gpt-5.4-pro
+      - openrouter/openai/gpt-5.5
+      - openrouter/openai/gpt-5.5-pro
+      - openrouter/openai/gpt-oss-120b
+      - openrouter/openai/gpt-oss-120b:free
+      - openrouter/openai/gpt-oss-20b
+      - openrouter/openai/gpt-oss-20b:free
+      - openrouter/openai/gpt-oss-safeguard-20b
+      - openrouter/openai/o1
+      - openrouter/openai/o1-pro
+      - openrouter/openai/o3
+      - openrouter/openai/o3-deep-research
+      - openrouter/openai/o3-mini
+      - openrouter/openai/o3-mini-high
+      - openrouter/openai/o3-pro
+      - openrouter/openai/o4-mini
+      - openrouter/openai/o4-mini-deep-research
+      - openrouter/openai/o4-mini-high
+      - openrouter/openrouter/bodybuilder
+      - openrouter/openrouter/free
+      - openrouter/openrouter/owl-alpha
+      - openrouter/openrouter/pareto-code
+      - openrouter/perplexity/sonar
+      - openrouter/perplexity/sonar-deep-research
+      - openrouter/perplexity/sonar-pro
+      - openrouter/perplexity/sonar-pro-search
+      - openrouter/perplexity/sonar-reasoning-pro
+      - openrouter/poolside/laguna-m.1:free
+      - openrouter/poolside/laguna-xs.2:free
+      - openrouter/prime-intellect/intellect-3
+      - openrouter/qwen/qwen-2.5-72b-instruct
+      - openrouter/qwen/qwen-2.5-7b-instruct
+      - openrouter/qwen/qwen-2.5-coder-32b-instruct
+      - openrouter/qwen/qwen-max
+      - openrouter/qwen/qwen-plus
+      - openrouter/qwen/qwen-plus-2025-07-28
+      - openrouter/qwen/qwen-plus-2025-07-28:thinking
+      - openrouter/qwen/qwen-turbo
+      - openrouter/qwen/qwen-vl-max
+      - openrouter/qwen/qwen-vl-plus
+      - openrouter/qwen/qwen2.5-vl-72b-instruct
+      - openrouter/qwen/qwen3-14b
+      - openrouter/qwen/qwen3-235b-a22b
+      - openrouter/qwen/qwen3-235b-a22b-2507
+      - openrouter/qwen/qwen3-235b-a22b-thinking-2507
+      - openrouter/qwen/qwen3-30b-a3b
+      - openrouter/qwen/qwen3-30b-a3b-instruct-2507
+      - openrouter/qwen/qwen3-30b-a3b-thinking-2507
+      - openrouter/qwen/qwen3-32b
+      - openrouter/qwen/qwen3-8b
+      - openrouter/qwen/qwen3-coder
+      - openrouter/qwen/qwen3-coder-30b-a3b-instruct
+      - openrouter/qwen/qwen3-coder-flash
+      - openrouter/qwen/qwen3-coder-next
+      - openrouter/qwen/qwen3-coder-plus
+      - openrouter/qwen/qwen3-coder:free
+      - openrouter/qwen/qwen3-max
+      - openrouter/qwen/qwen3-max-thinking
+      - openrouter/qwen/qwen3-next-80b-a3b-instruct
+      - openrouter/qwen/qwen3-next-80b-a3b-instruct:free
+      - openrouter/qwen/qwen3-next-80b-a3b-thinking
+      - openrouter/qwen/qwen3-vl-235b-a22b-instruct
+      - openrouter/qwen/qwen3-vl-235b-a22b-thinking
+      - openrouter/qwen/qwen3-vl-30b-a3b-instruct
+      - openrouter/qwen/qwen3-vl-30b-a3b-thinking
+      - openrouter/qwen/qwen3-vl-32b-instruct
+      - openrouter/qwen/qwen3-vl-8b-instruct
+      - openrouter/qwen/qwen3-vl-8b-thinking
+      - openrouter/qwen/qwen3.5-122b-a10b
+      - openrouter/qwen/qwen3.5-27b
+      - openrouter/qwen/qwen3.5-35b-a3b
+      - openrouter/qwen/qwen3.5-397b-a17b
+      - openrouter/qwen/qwen3.5-9b
+      - openrouter/qwen/qwen3.5-flash-02-23
+      - openrouter/qwen/qwen3.5-plus-02-15
+      - openrouter/qwen/qwen3.5-plus-20260420
+      - openrouter/qwen/qwen3.6-27b
+      - openrouter/qwen/qwen3.6-35b-a3b
+      - openrouter/qwen/qwen3.6-flash
+      - openrouter/qwen/qwen3.6-max-preview
+      - openrouter/qwen/qwen3.6-plus
+      - openrouter/rekaai/reka-edge
+      - openrouter/rekaai/reka-flash-3
+      - openrouter/relace/relace-apply-3
+      - openrouter/relace/relace-search
+      - openrouter/sao10k/l3-euryale-70b
+      - openrouter/sao10k/l3-lunaris-8b
+      - openrouter/sao10k/l3.1-70b-hanami-x1
+      - openrouter/sao10k/l3.1-euryale-70b
+      - openrouter/sao10k/l3.3-euryale-70b
+      - openrouter/stepfun/step-3.5-flash
+      - openrouter/switchpoint/router
+      - openrouter/tencent/hunyuan-a13b-instruct
+      - openrouter/tencent/hy3-preview:free
+      - openrouter/thedrummer/cydonia-24b-v4.1
+      - openrouter/thedrummer/rocinante-12b
+      - openrouter/thedrummer/skyfall-36b-v2
+      - openrouter/thedrummer/unslopnemo-12b
+      - openrouter/tngtech/deepseek-r1t2-chimera
+      - openrouter/undi95/remm-slerp-l2-13b
+      - openrouter/upstage/solar-pro-3
+      - openrouter/writer/palmyra-x5
+      - openrouter/x-ai/grok-3
+      - openrouter/x-ai/grok-3-beta
+      - openrouter/x-ai/grok-3-mini
+      - openrouter/x-ai/grok-3-mini-beta
+      - openrouter/x-ai/grok-4
+      - openrouter/x-ai/grok-4-fast
+      - openrouter/x-ai/grok-4.1-fast
+      - openrouter/x-ai/grok-4.20
+      - openrouter/x-ai/grok-4.20-multi-agent
+      - openrouter/x-ai/grok-4.3
+      - openrouter/x-ai/grok-code-fast-1
+      - openrouter/xiaomi/mimo-v2-flash
+      - openrouter/xiaomi/mimo-v2-omni
+      - openrouter/xiaomi/mimo-v2-pro
+      - openrouter/xiaomi/mimo-v2.5
+      - openrouter/xiaomi/mimo-v2.5-pro
+      - openrouter/z-ai/glm-4-32b
+      - openrouter/z-ai/glm-4.5
+      - openrouter/z-ai/glm-4.5-air
+      - openrouter/z-ai/glm-4.5-air:free
+      - openrouter/z-ai/glm-4.5v
+      - openrouter/z-ai/glm-4.6
+      - openrouter/z-ai/glm-4.6v
+      - openrouter/z-ai/glm-4.7
+      - openrouter/z-ai/glm-4.7-flash
+      - openrouter/z-ai/glm-5
+      - openrouter/z-ai/glm-5-turbo
+      - openrouter/z-ai/glm-5.1
+      - openrouter/z-ai/glm-5v-turbo
+      - openrouter/~anthropic/claude-haiku-latest
+      - openrouter/~anthropic/claude-opus-latest
+      - openrouter/~anthropic/claude-sonnet-latest
+      - openrouter/~google/gemini-flash-latest
+      - openrouter/~google/gemini-pro-latest
+      - openrouter/~moonshotai/kimi-latest
+      - openrouter/~openai/gpt-latest
+      - openrouter/~openai/gpt-mini-latest
+      fetch: false
+    selectorTiers:
+      free:
+      - openrouter/meta-llama/llama-3.2-3b-instruct:free
+      - openrouter/meta-llama/llama-3.3-70b-instruct:free
+      fast:
+      - openrouter/google/gemini-2.5-flash
+      - openrouter/google/gemini-2.5-flash-lite
+      - openrouter/openai/gpt-5-mini
+      - openrouter/openai/gpt-5-nano
+      - openrouter/qwen/qwen-turbo
+      powerful:
+      - openrouter/anthropic/claude-opus-4.1
+      - openrouter/deepseek/deepseek-r1
+      - openrouter/openai/gpt-5
+      - openrouter/openai/gpt-5-pro
+      - openrouter/upstage/solar-pro-3
+    titleConvo: true
+    titleModel: openrouter/google/gemini-2.5-flash
+    modelDisplayLabel: OpenRouter
+  - name: Cohere
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - cohere/command-a-03-2025
+      - cohere/command-a-reasoning-08-2025
+      - cohere/command-a-translate-08-2025
+      - cohere/command-r-08-2024
+      - cohere/command-r-plus-08-2024
+      - cohere/command-r7b-12-2024
+      fetch: false
+    selectorTiers:
+      free:
+      - cohere/command-a-reasoning-08-2025
+      - cohere/command-r-08-2024
+      - cohere/command-r7b-12-2024
+      fast:
+      - cohere/command-r7b-12-2024
+      powerful:
+      - cohere/command-a-reasoning-08-2025
+    titleConvo: true
+    titleModel: cohere/command-a-reasoning-08-2025
+    modelDisplayLabel: Cohere
+  - name: Cerebras
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - cerebras/meta-llama/llama-3.1-8b-instruct
+      - cerebras/openai/gpt-oss-120b
+      - cerebras/qwen/qwen3-235b-a22b-2507
+      - cerebras/z-ai/glm-4.7
+      fetch: false
+    selectorTiers:
+      free:
+      - cerebras/meta-llama/llama-3.1-8b-instruct
+      - cerebras/openai/gpt-oss-120b
+      - cerebras/qwen/qwen3-235b-a22b-2507
+      fast:
+      - cerebras/meta-llama/llama-3.1-8b-instruct
+      powerful:
+      - cerebras/openai/gpt-oss-120b
+      - cerebras/qwen/qwen3-235b-a22b-2507
+    titleConvo: true
+    titleModel: cerebras/meta-llama/llama-3.1-8b-instruct
+    modelDisplayLabel: Cerebras
+  - name: AWS Bedrock
+    baseURL: http://localhost:3080/api/backboard/v1
+    models:
+      default:
+      - aws-bedrock/anthropic.claude-3-5-haiku-20241022-v1:0
+      - aws-bedrock/anthropic.claude-3-5-sonnet-20240620-v1:0
+      - aws-bedrock/anthropic.claude-3-5-sonnet-20241022-v2:0
+      - aws-bedrock/anthropic.claude-3-7-sonnet-20250219-v1:0
+      - aws-bedrock/anthropic.claude-3-haiku-20240307-v1:0
+      - aws-bedrock/anthropic.claude-3-sonnet-20240229-v1:0
+      - aws-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0
+      - aws-bedrock/anthropic.claude-opus-4-1-20250805-v1:0
+      - aws-bedrock/anthropic.claude-opus-4-20250514-v1:0
+      - aws-bedrock/anthropic.claude-opus-4-5-20251101-v1:0
+      - aws-bedrock/anthropic.claude-opus-4-6-v1
+      - aws-bedrock/anthropic.claude-opus-4-7
+      - aws-bedrock/anthropic.claude-sonnet-4-20250514-v1:0
+      - aws-bedrock/anthropic.claude-sonnet-4-5-20250929-v1:0
+      - aws-bedrock/anthropic.claude-sonnet-4-6
+      - aws-bedrock/deepseek.r1-v1:0
+      - aws-bedrock/meta.llama3-1-70b-instruct-v1:0
+      - aws-bedrock/meta.llama3-1-8b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-11b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-1b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-3b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-90b-instruct-v1:0
+      - aws-bedrock/meta.llama3-3-70b-instruct-v1:0
+      - aws-bedrock/meta.llama4-maverick-17b-instruct-v1:0
+      - aws-bedrock/meta.llama4-scout-17b-instruct-v1:0
+      - aws-bedrock/mistral.pixtral-large-2502-v1:0
+      fetch: false
+    selectorTiers:
+      fast:
+      - aws-bedrock/anthropic.claude-3-5-haiku-20241022-v1:0
+      - aws-bedrock/meta.llama3-1-70b-instruct-v1:0
+      - aws-bedrock/meta.llama3-1-8b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-11b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-1b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-3b-instruct-v1:0
+      - aws-bedrock/meta.llama3-2-90b-instruct-v1:0
+      - aws-bedrock/meta.llama3-3-70b-instruct-v1:0
+      - aws-bedrock/meta.llama4-maverick-17b-instruct-v1:0
+      - aws-bedrock/meta.llama4-scout-17b-instruct-v1:0
+      powerful:
+      - aws-bedrock/anthropic.claude-opus-4-1-20250805-v1:0
+      - aws-bedrock/anthropic.claude-opus-4-20250514-v1:0
+      - aws-bedrock/deepseek.r1-v1:0
+    titleConvo: true
+    titleModel: aws-bedrock/anthropic.claude-3-5-sonnet-20241022-v2:0
+    modelDisplayLabel: AWS Bedrock
+modelPricing:
+  anthropic/claude-haiku-4-5-20251001:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 5.0
+    overageCostPer1mTokens: 5.0
+  anthropic/claude-opus-4-1-20250805:
+    inputCostPer1mTokens: 15.0
+    outputCostPer1mTokens: 75.0
+    overageCostPer1mTokens: 75.0
+  anthropic/claude-opus-4-20250514:
+    inputCostPer1mTokens: 15.0
+    outputCostPer1mTokens: 75.0
+    overageCostPer1mTokens: 75.0
+  anthropic/claude-opus-4-5-20251101:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  anthropic/claude-opus-4-6:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  anthropic/claude-opus-4-7:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  anthropic/claude-sonnet-4-20250514:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  anthropic/claude-sonnet-4-5-20250929:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  anthropic/claude-sonnet-4-6:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-3-5-haiku-20241022-v1:0:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 5.0
+    overageCostPer1mTokens: 5.0
+  aws-bedrock/anthropic.claude-3-5-sonnet-20240620-v1:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-3-5-sonnet-20241022-v2:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-3-7-sonnet-20250219-v1:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-3-haiku-20240307-v1:0:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 1.25
+    overageCostPer1mTokens: 1.25
+  aws-bedrock/anthropic.claude-3-sonnet-20240229-v1:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-haiku-4-5-20251001-v1:0:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 5.0
+    overageCostPer1mTokens: 5.0
+  aws-bedrock/anthropic.claude-opus-4-1-20250805-v1:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-opus-4-20250514-v1:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-opus-4-5-20251101-v1:0:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  aws-bedrock/anthropic.claude-opus-4-6-v1:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  aws-bedrock/anthropic.claude-opus-4-7:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  aws-bedrock/anthropic.claude-sonnet-4-20250514-v1:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-sonnet-4-5-20250929-v1:0:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/anthropic.claude-sonnet-4-6:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  aws-bedrock/deepseek.r1-v1:0:
+    inputCostPer1mTokens: 1.35
+    outputCostPer1mTokens: 5.4
+    overageCostPer1mTokens: 5.4
+  aws-bedrock/meta.llama3-1-70b-instruct-v1:0:
+    inputCostPer1mTokens: 0.72
+    outputCostPer1mTokens: 0.72
+    overageCostPer1mTokens: 0.72
+  aws-bedrock/meta.llama3-1-8b-instruct-v1:0:
+    inputCostPer1mTokens: 0.22
+    outputCostPer1mTokens: 0.22
+    overageCostPer1mTokens: 0.22
+  aws-bedrock/meta.llama3-2-11b-instruct-v1:0:
+    inputCostPer1mTokens: 0.16
+    outputCostPer1mTokens: 0.16
+    overageCostPer1mTokens: 0.16
+  aws-bedrock/meta.llama3-2-1b-instruct-v1:0:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  aws-bedrock/meta.llama3-2-3b-instruct-v1:0:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.15
+    overageCostPer1mTokens: 0.15
+  aws-bedrock/meta.llama3-2-90b-instruct-v1:0:
+    inputCostPer1mTokens: 0.72
+    outputCostPer1mTokens: 0.72
+    overageCostPer1mTokens: 0.72
+  aws-bedrock/meta.llama3-3-70b-instruct-v1:0:
+    inputCostPer1mTokens: 0.72
+    outputCostPer1mTokens: 0.72
+    overageCostPer1mTokens: 0.72
+  aws-bedrock/meta.llama4-maverick-17b-instruct-v1:0:
+    inputCostPer1mTokens: 0.24
+    outputCostPer1mTokens: 0.97
+    overageCostPer1mTokens: 0.97
+  aws-bedrock/meta.llama4-scout-17b-instruct-v1:0:
+    inputCostPer1mTokens: 0.17
+    outputCostPer1mTokens: 0.66
+    overageCostPer1mTokens: 0.66
+  aws-bedrock/mistral.pixtral-large-2502-v1:0:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  cerebras/meta-llama/llama-3.1-8b-instruct:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  cerebras/openai/gpt-oss-120b:
+    inputCostPer1mTokens: 0.35
+    outputCostPer1mTokens: 0.75
+    overageCostPer1mTokens: 0.75
+  cerebras/qwen/qwen3-235b-a22b-2507:
+    inputCostPer1mTokens: 0.6
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  cerebras/z-ai/glm-4.7:
+    inputCostPer1mTokens: 2.25
+    outputCostPer1mTokens: 2.75
+    overageCostPer1mTokens: 2.75
+  cohere/command-a-03-2025:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  cohere/command-a-reasoning-08-2025:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  cohere/command-a-translate-08-2025:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  cohere/command-r-08-2024:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  cohere/command-r-plus-08-2024:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  cohere/command-r7b-12-2024:
+    inputCostPer1mTokens: 0.0375
+    outputCostPer1mTokens: 0.15
+    overageCostPer1mTokens: 0.15
+  google/gemini-2.5-flash:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  google/gemini-2.5-flash-lite:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  google/gemini-2.5-pro:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  google/gemini-3-flash-preview:
+    inputCostPer1mTokens: 0.5
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  google/gemini-3.1-flash-lite-preview:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 1.5
+    overageCostPer1mTokens: 1.5
+  google/gemini-3.1-pro-preview:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 12.0
+    overageCostPer1mTokens: 12.0
+  openai/gpt-4.1:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openai/gpt-4.1-mini:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 1.6
+    overageCostPer1mTokens: 1.6
+  openai/gpt-4.1-nano:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openai/gpt-4o:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-4o-mini:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openai/gpt-5:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-5-chat-latest:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-5-codex:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-5-mini:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openai/gpt-5-nano:
+    inputCostPer1mTokens: 0.05
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openai/gpt-5.1:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-5.1-chat-latest:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-5.1-codex:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-5.1-codex-max:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openai/gpt-5.1-codex-mini:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openai/gpt-5.2:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openai/gpt-5.2-chat-latest:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openai/gpt-5.2-codex:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openai/gpt-5.3-chat-latest:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openai/gpt-5.3-codex:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openai/gpt-5.4:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openai/gpt-5.4-mini:
+    inputCostPer1mTokens: 0.75
+    outputCostPer1mTokens: 4.5
+    overageCostPer1mTokens: 4.5
+  openai/gpt-5.4-nano:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 1.25
+    overageCostPer1mTokens: 1.25
+  openai/gpt-5.5:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 30.0
+    overageCostPer1mTokens: 30.0
+  openai/o1:
+    inputCostPer1mTokens: 15.0
+    outputCostPer1mTokens: 60.0
+    overageCostPer1mTokens: 60.0
+  openai/o3:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openai/o3-mini:
+    inputCostPer1mTokens: 1.1
+    outputCostPer1mTokens: 4.4
+    overageCostPer1mTokens: 4.4
+  openai/o4-mini:
+    inputCostPer1mTokens: 1.1
+    outputCostPer1mTokens: 4.4
+    overageCostPer1mTokens: 4.4
+  openrouter/ai21/jamba-large-1.7:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openrouter/aion-labs/aion-1.0:
+    inputCostPer1mTokens: 4.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openrouter/aion-labs/aion-1.0-mini:
+    inputCostPer1mTokens: 0.7
+    outputCostPer1mTokens: 1.4
+    overageCostPer1mTokens: 1.4
+  openrouter/aion-labs/aion-2.0:
+    inputCostPer1mTokens: 0.8
+    outputCostPer1mTokens: 1.6
+    overageCostPer1mTokens: 1.6
+  openrouter/aion-labs/aion-rp-llama-3.1-8b:
+    inputCostPer1mTokens: 0.8
+    outputCostPer1mTokens: 1.6
+    overageCostPer1mTokens: 1.6
+  openrouter/alfredpros/codellama-7b-instruct-solidity:
+    inputCostPer1mTokens: 0.8
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/alibaba/tongyi-deepresearch-30b-a3b:
+    inputCostPer1mTokens: 0.09
+    outputCostPer1mTokens: 0.45
+    overageCostPer1mTokens: 0.45
+  openrouter/allenai/olmo-3-32b-think:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/allenai/olmo-3.1-32b-instruct:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/alpindale/goliath-120b:
+    inputCostPer1mTokens: 3.75
+    outputCostPer1mTokens: 7.5
+    overageCostPer1mTokens: 7.5
+  openrouter/amazon/nova-2-lite-v1:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  openrouter/amazon/nova-lite-v1:
+    inputCostPer1mTokens: 0.06
+    outputCostPer1mTokens: 0.24
+    overageCostPer1mTokens: 0.24
+  openrouter/amazon/nova-micro-v1:
+    inputCostPer1mTokens: 0.035
+    outputCostPer1mTokens: 0.14
+    overageCostPer1mTokens: 0.14
+  openrouter/amazon/nova-premier-v1:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 12.5
+    overageCostPer1mTokens: 12.5
+  openrouter/amazon/nova-pro-v1:
+    inputCostPer1mTokens: 0.8
+    outputCostPer1mTokens: 3.2
+    overageCostPer1mTokens: 3.2
+  openrouter/anthracite-org/magnum-v4-72b:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 5.0
+    overageCostPer1mTokens: 5.0
+  openrouter/anthropic/claude-3-haiku:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 1.25
+    overageCostPer1mTokens: 1.25
+  openrouter/anthropic/claude-3.5-haiku:
+    inputCostPer1mTokens: 0.8
+    outputCostPer1mTokens: 4.0
+    overageCostPer1mTokens: 4.0
+  openrouter/anthropic/claude-3.7-sonnet:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/anthropic/claude-3.7-sonnet:thinking:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/anthropic/claude-haiku-4.5:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 5.0
+    overageCostPer1mTokens: 5.0
+  openrouter/anthropic/claude-opus-4:
+    inputCostPer1mTokens: 15.0
+    outputCostPer1mTokens: 75.0
+    overageCostPer1mTokens: 75.0
+  openrouter/anthropic/claude-opus-4.1:
+    inputCostPer1mTokens: 15.0
+    outputCostPer1mTokens: 75.0
+    overageCostPer1mTokens: 75.0
+  openrouter/anthropic/claude-opus-4.5:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  openrouter/anthropic/claude-opus-4.6:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  openrouter/anthropic/claude-opus-4.6-fast:
+    inputCostPer1mTokens: 30.0
+    outputCostPer1mTokens: 150.0
+    overageCostPer1mTokens: 150.0
+  openrouter/anthropic/claude-opus-4.7:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  openrouter/anthropic/claude-sonnet-4:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/anthropic/claude-sonnet-4.5:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/anthropic/claude-sonnet-4.6:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/arcee-ai/coder-large:
+    inputCostPer1mTokens: 0.5
+    outputCostPer1mTokens: 0.8
+    overageCostPer1mTokens: 0.8
+  openrouter/arcee-ai/maestro-reasoning:
+    inputCostPer1mTokens: 0.9
+    outputCostPer1mTokens: 3.3
+    overageCostPer1mTokens: 3.3
+  openrouter/arcee-ai/spotlight:
+    inputCostPer1mTokens: 0.18
+    outputCostPer1mTokens: 0.18
+    overageCostPer1mTokens: 0.18
+  openrouter/arcee-ai/trinity-large-preview:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.45
+    overageCostPer1mTokens: 0.45
+  openrouter/arcee-ai/trinity-large-thinking:
+    inputCostPer1mTokens: 0.22
+    outputCostPer1mTokens: 0.85
+    overageCostPer1mTokens: 0.85
+  openrouter/arcee-ai/trinity-mini:
+    inputCostPer1mTokens: 0.045
+    outputCostPer1mTokens: 0.15
+    overageCostPer1mTokens: 0.15
+  openrouter/arcee-ai/virtuoso-large:
+    inputCostPer1mTokens: 0.75
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/baidu/ernie-4.5-21b-a3b:
+    inputCostPer1mTokens: 0.07
+    outputCostPer1mTokens: 0.28
+    overageCostPer1mTokens: 0.28
+  openrouter/baidu/ernie-4.5-21b-a3b-thinking:
+    inputCostPer1mTokens: 0.07
+    outputCostPer1mTokens: 0.28
+    overageCostPer1mTokens: 0.28
+  openrouter/baidu/ernie-4.5-300b-a47b:
+    inputCostPer1mTokens: 0.28
+    outputCostPer1mTokens: 1.1
+    overageCostPer1mTokens: 1.1
+  openrouter/baidu/ernie-4.5-vl-28b-a3b:
+    inputCostPer1mTokens: 0.14
+    outputCostPer1mTokens: 0.56
+    overageCostPer1mTokens: 0.56
+  openrouter/baidu/ernie-4.5-vl-424b-a47b:
+    inputCostPer1mTokens: 0.42
+    outputCostPer1mTokens: 1.25
+    overageCostPer1mTokens: 1.25
+  openrouter/baidu/qianfan-ocr-fast:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/bytedance-seed/seed-1.6:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/bytedance-seed/seed-1.6-flash:
+    inputCostPer1mTokens: 0.075
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/bytedance-seed/seed-2.0-lite:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/bytedance-seed/seed-2.0-mini:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/bytedance/ui-tars-1.5-7b:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.2
+    overageCostPer1mTokens: 0.2
+  openrouter/cognitivecomputations/dolphin-mistral-24b-venice-edition:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/cohere/command-a:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/cohere/command-r-08-2024:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/cohere/command-r-plus-08-2024:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/cohere/command-r7b-12-2024:
+    inputCostPer1mTokens: 0.0375
+    outputCostPer1mTokens: 0.15
+    overageCostPer1mTokens: 0.15
+  openrouter/deepcogito/cogito-v2.1-671b:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 1.25
+    overageCostPer1mTokens: 1.25
+  openrouter/deepseek/deepseek-chat:
+    inputCostPer1mTokens: 0.32
+    outputCostPer1mTokens: 0.89
+    overageCostPer1mTokens: 0.89
+  openrouter/deepseek/deepseek-chat-v3-0324:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.77
+    overageCostPer1mTokens: 0.77
+  openrouter/deepseek/deepseek-chat-v3.1:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.75
+    overageCostPer1mTokens: 0.75
+  openrouter/deepseek/deepseek-r1:
+    inputCostPer1mTokens: 0.7
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  openrouter/deepseek/deepseek-r1-0528:
+    inputCostPer1mTokens: 0.5
+    outputCostPer1mTokens: 2.15
+    overageCostPer1mTokens: 2.15
+  openrouter/deepseek/deepseek-r1-distill-llama-70b:
+    inputCostPer1mTokens: 0.7
+    outputCostPer1mTokens: 0.8
+    overageCostPer1mTokens: 0.8
+  openrouter/deepseek/deepseek-r1-distill-qwen-32b:
+    inputCostPer1mTokens: 0.29
+    outputCostPer1mTokens: 0.29
+    overageCostPer1mTokens: 0.29
+  openrouter/deepseek/deepseek-v3.1-terminus:
+    inputCostPer1mTokens: 0.27
+    outputCostPer1mTokens: 0.95
+    overageCostPer1mTokens: 0.95
+  openrouter/deepseek/deepseek-v3.2:
+    inputCostPer1mTokens: 0.252
+    outputCostPer1mTokens: 0.378
+    overageCostPer1mTokens: 0.378
+  openrouter/deepseek/deepseek-v3.2-exp:
+    inputCostPer1mTokens: 0.27
+    outputCostPer1mTokens: 0.41
+    overageCostPer1mTokens: 0.41
+  openrouter/deepseek/deepseek-v3.2-speciale:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/deepseek/deepseek-v4-flash:
+    inputCostPer1mTokens: 0.14
+    outputCostPer1mTokens: 0.28
+    overageCostPer1mTokens: 0.28
+  openrouter/deepseek/deepseek-v4-pro:
+    inputCostPer1mTokens: 0.435
+    outputCostPer1mTokens: 0.87
+    overageCostPer1mTokens: 0.87
+  openrouter/essentialai/rnj-1-instruct:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.15
+    overageCostPer1mTokens: 0.15
+  openrouter/google/gemini-2.0-flash-001:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/google/gemini-2.0-flash-lite-001:
+    inputCostPer1mTokens: 0.075
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/google/gemini-2.5-flash:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  openrouter/google/gemini-2.5-flash-lite:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/google/gemini-2.5-flash-lite-preview-09-2025:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/google/gemini-2.5-pro:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/google/gemini-2.5-pro-preview:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/google/gemini-2.5-pro-preview-05-06:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/google/gemini-3-flash-preview:
+    inputCostPer1mTokens: 0.5
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  openrouter/google/gemini-3.1-flash-lite-preview:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 1.5
+    overageCostPer1mTokens: 1.5
+  openrouter/google/gemini-3.1-pro-preview:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 12.0
+    overageCostPer1mTokens: 12.0
+  openrouter/google/gemini-3.1-pro-preview-customtools:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 12.0
+    overageCostPer1mTokens: 12.0
+  openrouter/google/gemma-2-27b-it:
+    inputCostPer1mTokens: 0.65
+    outputCostPer1mTokens: 0.65
+    overageCostPer1mTokens: 0.65
+  openrouter/google/gemma-3-12b-it:
+    inputCostPer1mTokens: 0.04
+    outputCostPer1mTokens: 0.13
+    overageCostPer1mTokens: 0.13
+  openrouter/google/gemma-3-12b-it:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/google/gemma-3-27b-it:
+    inputCostPer1mTokens: 0.08
+    outputCostPer1mTokens: 0.16
+    overageCostPer1mTokens: 0.16
+  openrouter/google/gemma-3-27b-it:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/google/gemma-3-4b-it:
+    inputCostPer1mTokens: 0.04
+    outputCostPer1mTokens: 0.08
+    overageCostPer1mTokens: 0.08
+  openrouter/google/gemma-3-4b-it:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/google/gemma-3n-e2b-it:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/google/gemma-3n-e4b-it:
+    inputCostPer1mTokens: 0.06
+    outputCostPer1mTokens: 0.12
+    overageCostPer1mTokens: 0.12
+  openrouter/google/gemma-3n-e4b-it:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/google/gemma-4-26b-a4b-it:
+    inputCostPer1mTokens: 0.06
+    outputCostPer1mTokens: 0.33
+    overageCostPer1mTokens: 0.33
+  openrouter/google/gemma-4-26b-a4b-it:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/google/gemma-4-31b-it:
+    inputCostPer1mTokens: 0.13
+    outputCostPer1mTokens: 0.38
+    overageCostPer1mTokens: 0.38
+  openrouter/google/gemma-4-31b-it:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/gryphe/mythomax-l2-13b:
+    inputCostPer1mTokens: 0.06
+    outputCostPer1mTokens: 0.06
+    overageCostPer1mTokens: 0.06
+  openrouter/ibm-granite/granite-4.0-h-micro:
+    inputCostPer1mTokens: 0.017
+    outputCostPer1mTokens: 0.11
+    overageCostPer1mTokens: 0.11
+  openrouter/ibm-granite/granite-4.1-8b:
+    inputCostPer1mTokens: 0.05
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  openrouter/inception/mercury-2:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 0.75
+    overageCostPer1mTokens: 0.75
+  openrouter/inclusionai/ling-2.6-1t:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/inclusionai/ling-2.6-flash:
+    inputCostPer1mTokens: 0.08
+    outputCostPer1mTokens: 0.24
+    overageCostPer1mTokens: 0.24
+  openrouter/inflection/inflection-3-pi:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/inflection/inflection-3-productivity:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/kwaipilot/kat-coder-pro-v2:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/liquid/lfm-2-24b-a2b:
+    inputCostPer1mTokens: 0.03
+    outputCostPer1mTokens: 0.12
+    overageCostPer1mTokens: 0.12
+  openrouter/liquid/lfm-2.5-1.2b-instruct:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/liquid/lfm-2.5-1.2b-thinking:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/mancer/weaver:
+    inputCostPer1mTokens: 0.75
+    outputCostPer1mTokens: 1.0
+    overageCostPer1mTokens: 1.0
+  openrouter/meta-llama/llama-3-70b-instruct:
+    inputCostPer1mTokens: 0.51
+    outputCostPer1mTokens: 0.74
+    overageCostPer1mTokens: 0.74
+  openrouter/meta-llama/llama-3-8b-instruct:
+    inputCostPer1mTokens: 0.03
+    outputCostPer1mTokens: 0.04
+    overageCostPer1mTokens: 0.04
+  openrouter/meta-llama/llama-3.1-70b-instruct:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/meta-llama/llama-3.1-8b-instruct:
+    inputCostPer1mTokens: 0.02
+    outputCostPer1mTokens: 0.05
+    overageCostPer1mTokens: 0.05
+  openrouter/meta-llama/llama-3.2-11b-vision-instruct:
+    inputCostPer1mTokens: 0.245
+    outputCostPer1mTokens: 0.245
+    overageCostPer1mTokens: 0.245
+  openrouter/meta-llama/llama-3.2-1b-instruct:
+    inputCostPer1mTokens: 0.027
+    outputCostPer1mTokens: 0.2
+    overageCostPer1mTokens: 0.2
+  openrouter/meta-llama/llama-3.2-3b-instruct:
+    inputCostPer1mTokens: 0.051
+    outputCostPer1mTokens: 0.34
+    overageCostPer1mTokens: 0.34
+  openrouter/meta-llama/llama-3.2-3b-instruct:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/meta-llama/llama-3.3-70b-instruct:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.32
+    overageCostPer1mTokens: 0.32
+  openrouter/meta-llama/llama-3.3-70b-instruct:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/meta-llama/llama-4-maverick:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/meta-llama/llama-4-scout:
+    inputCostPer1mTokens: 0.08
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/meta-llama/llama-guard-3-8b:
+    inputCostPer1mTokens: 0.48
+    outputCostPer1mTokens: 0.03
+    overageCostPer1mTokens: 0.03
+  openrouter/meta-llama/llama-guard-4-12b:
+    inputCostPer1mTokens: 0.18
+    outputCostPer1mTokens: 0.18
+    overageCostPer1mTokens: 0.18
+  openrouter/microsoft/phi-4:
+    inputCostPer1mTokens: 0.065
+    outputCostPer1mTokens: 0.14
+    overageCostPer1mTokens: 0.14
+  openrouter/microsoft/phi-4-mini-instruct:
+    inputCostPer1mTokens: 0.08
+    outputCostPer1mTokens: 0.35
+    overageCostPer1mTokens: 0.35
+  openrouter/microsoft/wizardlm-2-8x22b:
+    inputCostPer1mTokens: 0.62
+    outputCostPer1mTokens: 0.62
+    overageCostPer1mTokens: 0.62
+  openrouter/minimax/minimax-01:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 1.1
+    overageCostPer1mTokens: 1.1
+  openrouter/minimax/minimax-m1:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.2
+    overageCostPer1mTokens: 2.2
+  openrouter/minimax/minimax-m2:
+    inputCostPer1mTokens: 0.255
+    outputCostPer1mTokens: 1.0
+    overageCostPer1mTokens: 1.0
+  openrouter/minimax/minimax-m2-her:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/minimax/minimax-m2.1:
+    inputCostPer1mTokens: 0.29
+    outputCostPer1mTokens: 0.95
+    overageCostPer1mTokens: 0.95
+  openrouter/minimax/minimax-m2.5:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 1.15
+    overageCostPer1mTokens: 1.15
+  openrouter/minimax/minimax-m2.5:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/minimax/minimax-m2.7:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/mistralai/codestral-2508:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 0.9
+    overageCostPer1mTokens: 0.9
+  openrouter/mistralai/devstral-2512:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/mistralai/devstral-medium:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/mistralai/devstral-small:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/mistralai/ministral-14b-2512:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.2
+    overageCostPer1mTokens: 0.2
+  openrouter/mistralai/ministral-3b-2512:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  openrouter/mistralai/ministral-8b-2512:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.15
+    overageCostPer1mTokens: 0.15
+  openrouter/mistralai/mistral-7b-instruct-v0.1:
+    inputCostPer1mTokens: 0.11
+    outputCostPer1mTokens: 0.19
+    overageCostPer1mTokens: 0.19
+  openrouter/mistralai/mistral-large:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  openrouter/mistralai/mistral-large-2407:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  openrouter/mistralai/mistral-large-2411:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  openrouter/mistralai/mistral-large-2512:
+    inputCostPer1mTokens: 0.5
+    outputCostPer1mTokens: 1.5
+    overageCostPer1mTokens: 1.5
+  openrouter/mistralai/mistral-medium-3:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/mistralai/mistral-medium-3-5:
+    inputCostPer1mTokens: 1.5
+    outputCostPer1mTokens: 7.5
+    overageCostPer1mTokens: 7.5
+  openrouter/mistralai/mistral-medium-3.1:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/mistralai/mistral-nemo:
+    inputCostPer1mTokens: 0.02
+    outputCostPer1mTokens: 0.03
+    overageCostPer1mTokens: 0.03
+  openrouter/mistralai/mistral-saba:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/mistralai/mistral-small-24b-instruct-2501:
+    inputCostPer1mTokens: 0.05
+    outputCostPer1mTokens: 0.08
+    overageCostPer1mTokens: 0.08
+  openrouter/mistralai/mistral-small-2603:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/mistralai/mistral-small-3.1-24b-instruct:
+    inputCostPer1mTokens: 0.35
+    outputCostPer1mTokens: 0.56
+    overageCostPer1mTokens: 0.56
+  openrouter/mistralai/mistral-small-3.2-24b-instruct:
+    inputCostPer1mTokens: 0.075
+    outputCostPer1mTokens: 0.2
+    overageCostPer1mTokens: 0.2
+  openrouter/mistralai/mixtral-8x22b-instruct:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  openrouter/mistralai/mixtral-8x7b-instruct:
+    inputCostPer1mTokens: 0.54
+    outputCostPer1mTokens: 0.54
+    overageCostPer1mTokens: 0.54
+  openrouter/mistralai/pixtral-large-2411:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  openrouter/mistralai/voxtral-small-24b-2507:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/moonshotai/kimi-k2:
+    inputCostPer1mTokens: 0.57
+    outputCostPer1mTokens: 2.3
+    overageCostPer1mTokens: 2.3
+  openrouter/moonshotai/kimi-k2-0905:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/moonshotai/kimi-k2-thinking:
+    inputCostPer1mTokens: 0.6
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  openrouter/moonshotai/kimi-k2.5:
+    inputCostPer1mTokens: 0.44
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/moonshotai/kimi-k2.6:
+    inputCostPer1mTokens: 0.74
+    outputCostPer1mTokens: 3.49
+    overageCostPer1mTokens: 3.49
+  openrouter/morph/morph-v3-fast:
+    inputCostPer1mTokens: 0.8
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/morph/morph-v3-large:
+    inputCostPer1mTokens: 0.9
+    outputCostPer1mTokens: 1.9
+    overageCostPer1mTokens: 1.9
+  openrouter/nex-agi/deepseek-v3.1-nex-n1:
+    inputCostPer1mTokens: 0.135
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/nousresearch/hermes-2-pro-llama-3-8b:
+    inputCostPer1mTokens: 0.14
+    outputCostPer1mTokens: 0.14
+    overageCostPer1mTokens: 0.14
+  openrouter/nousresearch/hermes-3-llama-3.1-405b:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 1.0
+    overageCostPer1mTokens: 1.0
+  openrouter/nousresearch/hermes-3-llama-3.1-405b:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/nousresearch/hermes-3-llama-3.1-70b:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/nousresearch/hermes-4-405b:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  openrouter/nousresearch/hermes-4-70b:
+    inputCostPer1mTokens: 0.13
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/nvidia/llama-3.1-nemotron-70b-instruct:
+    inputCostPer1mTokens: 1.2
+    outputCostPer1mTokens: 1.2
+    overageCostPer1mTokens: 1.2
+  openrouter/nvidia/llama-3.3-nemotron-super-49b-v1.5:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/nvidia/nemotron-3-nano-30b-a3b:
+    inputCostPer1mTokens: 0.05
+    outputCostPer1mTokens: 0.2
+    overageCostPer1mTokens: 0.2
+  openrouter/nvidia/nemotron-3-nano-30b-a3b:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/nvidia/nemotron-3-super-120b-a12b:
+    inputCostPer1mTokens: 0.09
+    outputCostPer1mTokens: 0.45
+    overageCostPer1mTokens: 0.45
+  openrouter/nvidia/nemotron-3-super-120b-a12b:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/nvidia/nemotron-nano-12b-v2-vl:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/nvidia/nemotron-nano-12b-v2-vl:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/nvidia/nemotron-nano-9b-v2:
+    inputCostPer1mTokens: 0.04
+    outputCostPer1mTokens: 0.16
+    overageCostPer1mTokens: 0.16
+  openrouter/nvidia/nemotron-nano-9b-v2:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/openai/gpt-3.5-turbo:
+    inputCostPer1mTokens: 0.5
+    outputCostPer1mTokens: 1.5
+    overageCostPer1mTokens: 1.5
+  openrouter/openai/gpt-3.5-turbo-0613:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/openai/gpt-3.5-turbo-16k:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 4.0
+    overageCostPer1mTokens: 4.0
+  openrouter/openai/gpt-3.5-turbo-instruct:
+    inputCostPer1mTokens: 1.5
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/openai/gpt-4:
+    inputCostPer1mTokens: 30.0
+    outputCostPer1mTokens: 60.0
+    overageCostPer1mTokens: 60.0
+  openrouter/openai/gpt-4-0314:
+    inputCostPer1mTokens: 30.0
+    outputCostPer1mTokens: 60.0
+    overageCostPer1mTokens: 60.0
+  openrouter/openai/gpt-4-1106-preview:
+    inputCostPer1mTokens: 10.0
+    outputCostPer1mTokens: 30.0
+    overageCostPer1mTokens: 30.0
+  openrouter/openai/gpt-4-turbo:
+    inputCostPer1mTokens: 10.0
+    outputCostPer1mTokens: 30.0
+    overageCostPer1mTokens: 30.0
+  openrouter/openai/gpt-4-turbo-preview:
+    inputCostPer1mTokens: 10.0
+    outputCostPer1mTokens: 30.0
+    overageCostPer1mTokens: 30.0
+  openrouter/openai/gpt-4.1:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openrouter/openai/gpt-4.1-mini:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 1.6
+    overageCostPer1mTokens: 1.6
+  openrouter/openai/gpt-4.1-nano:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/openai/gpt-4o:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-4o-2024-05-13:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/openai/gpt-4o-2024-08-06:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-4o-2024-11-20:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-4o-mini:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/openai/gpt-4o-mini-2024-07-18:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/openai/gpt-4o-mini-search-preview:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/openai/gpt-4o-search-preview:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5-chat:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5-codex:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5-mini:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/openai/gpt-5-nano:
+    inputCostPer1mTokens: 0.05
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/openai/gpt-5-pro:
+    inputCostPer1mTokens: 15.0
+    outputCostPer1mTokens: 120.0
+    overageCostPer1mTokens: 120.0
+  openrouter/openai/gpt-5.1:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5.1-chat:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5.1-codex:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5.1-codex-max:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 10.0
+    overageCostPer1mTokens: 10.0
+  openrouter/openai/gpt-5.1-codex-mini:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/openai/gpt-5.2:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openrouter/openai/gpt-5.2-chat:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openrouter/openai/gpt-5.2-codex:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openrouter/openai/gpt-5.2-pro:
+    inputCostPer1mTokens: 21.0
+    outputCostPer1mTokens: 168.0
+    overageCostPer1mTokens: 168.0
+  openrouter/openai/gpt-5.3-chat:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openrouter/openai/gpt-5.3-codex:
+    inputCostPer1mTokens: 1.75
+    outputCostPer1mTokens: 14.0
+    overageCostPer1mTokens: 14.0
+  openrouter/openai/gpt-5.4:
+    inputCostPer1mTokens: 2.5
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/openai/gpt-5.4-mini:
+    inputCostPer1mTokens: 0.75
+    outputCostPer1mTokens: 4.5
+    overageCostPer1mTokens: 4.5
+  openrouter/openai/gpt-5.4-nano:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 1.25
+    overageCostPer1mTokens: 1.25
+  openrouter/openai/gpt-5.4-pro:
+    inputCostPer1mTokens: 30.0
+    outputCostPer1mTokens: 180.0
+    overageCostPer1mTokens: 180.0
+  openrouter/openai/gpt-5.5:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 30.0
+    overageCostPer1mTokens: 30.0
+  openrouter/openai/gpt-5.5-pro:
+    inputCostPer1mTokens: 30.0
+    outputCostPer1mTokens: 180.0
+    overageCostPer1mTokens: 180.0
+  openrouter/openai/gpt-oss-120b:
+    inputCostPer1mTokens: 0.039
+    outputCostPer1mTokens: 0.18
+    overageCostPer1mTokens: 0.18
+  openrouter/openai/gpt-oss-120b:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/openai/gpt-oss-20b:
+    inputCostPer1mTokens: 0.03
+    outputCostPer1mTokens: 0.14
+    overageCostPer1mTokens: 0.14
+  openrouter/openai/gpt-oss-20b:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/openai/gpt-oss-safeguard-20b:
+    inputCostPer1mTokens: 0.075
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/openai/o1:
+    inputCostPer1mTokens: 15.0
+    outputCostPer1mTokens: 60.0
+    overageCostPer1mTokens: 60.0
+  openrouter/openai/o1-pro:
+    inputCostPer1mTokens: 150.0
+    outputCostPer1mTokens: 600.0
+    overageCostPer1mTokens: 600.0
+  openrouter/openai/o3:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openrouter/openai/o3-deep-research:
+    inputCostPer1mTokens: 10.0
+    outputCostPer1mTokens: 40.0
+    overageCostPer1mTokens: 40.0
+  openrouter/openai/o3-mini:
+    inputCostPer1mTokens: 1.1
+    outputCostPer1mTokens: 4.4
+    overageCostPer1mTokens: 4.4
+  openrouter/openai/o3-mini-high:
+    inputCostPer1mTokens: 1.1
+    outputCostPer1mTokens: 4.4
+    overageCostPer1mTokens: 4.4
+  openrouter/openai/o3-pro:
+    inputCostPer1mTokens: 20.0
+    outputCostPer1mTokens: 80.0
+    overageCostPer1mTokens: 80.0
+  openrouter/openai/o4-mini:
+    inputCostPer1mTokens: 1.1
+    outputCostPer1mTokens: 4.4
+    overageCostPer1mTokens: 4.4
+  openrouter/openai/o4-mini-deep-research:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openrouter/openai/o4-mini-high:
+    inputCostPer1mTokens: 1.1
+    outputCostPer1mTokens: 4.4
+    overageCostPer1mTokens: 4.4
+  openrouter/openrouter/bodybuilder:
+    inputCostPer1mTokens: -1000000.0
+    outputCostPer1mTokens: -1000000.0
+    overageCostPer1mTokens: -1000000.0
+  openrouter/openrouter/free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/openrouter/owl-alpha:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/openrouter/pareto-code:
+    inputCostPer1mTokens: -1000000.0
+    outputCostPer1mTokens: -1000000.0
+    overageCostPer1mTokens: -1000000.0
+  openrouter/perplexity/sonar:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 1.0
+    overageCostPer1mTokens: 1.0
+  openrouter/perplexity/sonar-deep-research:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openrouter/perplexity/sonar-pro:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/perplexity/sonar-pro-search:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/perplexity/sonar-reasoning-pro:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 8.0
+    overageCostPer1mTokens: 8.0
+  openrouter/poolside/laguna-m.1:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/poolside/laguna-xs.2:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/prime-intellect/intellect-3:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 1.1
+    overageCostPer1mTokens: 1.1
+  openrouter/qwen/qwen-2.5-72b-instruct:
+    inputCostPer1mTokens: 0.36
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/qwen/qwen-2.5-7b-instruct:
+    inputCostPer1mTokens: 0.04
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  openrouter/qwen/qwen-2.5-coder-32b-instruct:
+    inputCostPer1mTokens: 0.66
+    outputCostPer1mTokens: 1.0
+    overageCostPer1mTokens: 1.0
+  openrouter/qwen/qwen-max:
+    inputCostPer1mTokens: 1.04
+    outputCostPer1mTokens: 4.16
+    overageCostPer1mTokens: 4.16
+  openrouter/qwen/qwen-plus:
+    inputCostPer1mTokens: 0.26
+    outputCostPer1mTokens: 0.78
+    overageCostPer1mTokens: 0.78
+  openrouter/qwen/qwen-plus-2025-07-28:
+    inputCostPer1mTokens: 0.26
+    outputCostPer1mTokens: 0.78
+    overageCostPer1mTokens: 0.78
+  openrouter/qwen/qwen-plus-2025-07-28:thinking:
+    inputCostPer1mTokens: 0.26
+    outputCostPer1mTokens: 0.78
+    overageCostPer1mTokens: 0.78
+  openrouter/qwen/qwen-turbo:
+    inputCostPer1mTokens: 0.0325
+    outputCostPer1mTokens: 0.13
+    overageCostPer1mTokens: 0.13
+  openrouter/qwen/qwen-vl-max:
+    inputCostPer1mTokens: 0.52
+    outputCostPer1mTokens: 2.08
+    overageCostPer1mTokens: 2.08
+  openrouter/qwen/qwen-vl-plus:
+    inputCostPer1mTokens: 0.1365
+    outputCostPer1mTokens: 0.4095
+    overageCostPer1mTokens: 0.4095
+  openrouter/qwen/qwen2.5-vl-72b-instruct:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 0.75
+    overageCostPer1mTokens: 0.75
+  openrouter/qwen/qwen3-14b:
+    inputCostPer1mTokens: 0.06
+    outputCostPer1mTokens: 0.24
+    overageCostPer1mTokens: 0.24
+  openrouter/qwen/qwen3-235b-a22b:
+    inputCostPer1mTokens: 0.455
+    outputCostPer1mTokens: 1.82
+    overageCostPer1mTokens: 1.82
+  openrouter/qwen/qwen3-235b-a22b-2507:
+    inputCostPer1mTokens: 0.071
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  openrouter/qwen/qwen3-235b-a22b-thinking-2507:
+    inputCostPer1mTokens: 0.1495
+    outputCostPer1mTokens: 1.495
+    overageCostPer1mTokens: 1.495
+  openrouter/qwen/qwen3-30b-a3b:
+    inputCostPer1mTokens: 0.09
+    outputCostPer1mTokens: 0.45
+    overageCostPer1mTokens: 0.45
+  openrouter/qwen/qwen3-30b-a3b-instruct-2507:
+    inputCostPer1mTokens: 0.09
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/qwen/qwen3-30b-a3b-thinking-2507:
+    inputCostPer1mTokens: 0.08
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/qwen/qwen3-32b:
+    inputCostPer1mTokens: 0.08
+    outputCostPer1mTokens: 0.24
+    overageCostPer1mTokens: 0.24
+  openrouter/qwen/qwen3-8b:
+    inputCostPer1mTokens: 0.05
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/qwen/qwen3-coder:
+    inputCostPer1mTokens: 0.22
+    outputCostPer1mTokens: 1.8
+    overageCostPer1mTokens: 1.8
+  openrouter/qwen/qwen3-coder-30b-a3b-instruct:
+    inputCostPer1mTokens: 0.07
+    outputCostPer1mTokens: 0.27
+    overageCostPer1mTokens: 0.27
+  openrouter/qwen/qwen3-coder-flash:
+    inputCostPer1mTokens: 0.195
+    outputCostPer1mTokens: 0.975
+    overageCostPer1mTokens: 0.975
+  openrouter/qwen/qwen3-coder-next:
+    inputCostPer1mTokens: 0.12
+    outputCostPer1mTokens: 0.8
+    overageCostPer1mTokens: 0.8
+  openrouter/qwen/qwen3-coder-plus:
+    inputCostPer1mTokens: 0.65
+    outputCostPer1mTokens: 3.25
+    overageCostPer1mTokens: 3.25
+  openrouter/qwen/qwen3-coder:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/qwen/qwen3-max:
+    inputCostPer1mTokens: 0.78
+    outputCostPer1mTokens: 3.9
+    overageCostPer1mTokens: 3.9
+  openrouter/qwen/qwen3-max-thinking:
+    inputCostPer1mTokens: 0.78
+    outputCostPer1mTokens: 3.9
+    overageCostPer1mTokens: 3.9
+  openrouter/qwen/qwen3-next-80b-a3b-instruct:
+    inputCostPer1mTokens: 0.09
+    outputCostPer1mTokens: 1.1
+    overageCostPer1mTokens: 1.1
+  openrouter/qwen/qwen3-next-80b-a3b-instruct:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/qwen/qwen3-next-80b-a3b-thinking:
+    inputCostPer1mTokens: 0.0975
+    outputCostPer1mTokens: 0.78
+    overageCostPer1mTokens: 0.78
+  openrouter/qwen/qwen3-vl-235b-a22b-instruct:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.88
+    overageCostPer1mTokens: 0.88
+  openrouter/qwen/qwen3-vl-235b-a22b-thinking:
+    inputCostPer1mTokens: 0.26
+    outputCostPer1mTokens: 2.6
+    overageCostPer1mTokens: 2.6
+  openrouter/qwen/qwen3-vl-30b-a3b-instruct:
+    inputCostPer1mTokens: 0.13
+    outputCostPer1mTokens: 0.52
+    overageCostPer1mTokens: 0.52
+  openrouter/qwen/qwen3-vl-30b-a3b-thinking:
+    inputCostPer1mTokens: 0.13
+    outputCostPer1mTokens: 1.56
+    overageCostPer1mTokens: 1.56
+  openrouter/qwen/qwen3-vl-32b-instruct:
+    inputCostPer1mTokens: 0.104
+    outputCostPer1mTokens: 0.416
+    overageCostPer1mTokens: 0.416
+  openrouter/qwen/qwen3-vl-8b-instruct:
+    inputCostPer1mTokens: 0.08
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/qwen/qwen3-vl-8b-thinking:
+    inputCostPer1mTokens: 0.117
+    outputCostPer1mTokens: 1.365
+    overageCostPer1mTokens: 1.365
+  openrouter/qwen/qwen3.5-122b-a10b:
+    inputCostPer1mTokens: 0.26
+    outputCostPer1mTokens: 2.08
+    overageCostPer1mTokens: 2.08
+  openrouter/qwen/qwen3.5-27b:
+    inputCostPer1mTokens: 0.195
+    outputCostPer1mTokens: 1.56
+    overageCostPer1mTokens: 1.56
+  openrouter/qwen/qwen3.5-35b-a3b:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 1.0
+    overageCostPer1mTokens: 1.0
+  openrouter/qwen/qwen3.5-397b-a17b:
+    inputCostPer1mTokens: 0.39
+    outputCostPer1mTokens: 2.34
+    overageCostPer1mTokens: 2.34
+  openrouter/qwen/qwen3.5-9b:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.15
+    overageCostPer1mTokens: 0.15
+  openrouter/qwen/qwen3.5-flash-02-23:
+    inputCostPer1mTokens: 0.065
+    outputCostPer1mTokens: 0.26
+    overageCostPer1mTokens: 0.26
+  openrouter/qwen/qwen3.5-plus-02-15:
+    inputCostPer1mTokens: 0.26
+    outputCostPer1mTokens: 1.56
+    overageCostPer1mTokens: 1.56
+  openrouter/qwen/qwen3.5-plus-20260420:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.4
+    overageCostPer1mTokens: 2.4
+  openrouter/qwen/qwen3.6-27b:
+    inputCostPer1mTokens: 0.32
+    outputCostPer1mTokens: 3.2
+    overageCostPer1mTokens: 3.2
+  openrouter/qwen/qwen3.6-35b-a3b:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 1.0
+    overageCostPer1mTokens: 1.0
+  openrouter/qwen/qwen3.6-flash:
+    inputCostPer1mTokens: 0.25
+    outputCostPer1mTokens: 1.5
+    overageCostPer1mTokens: 1.5
+  openrouter/qwen/qwen3.6-max-preview:
+    inputCostPer1mTokens: 1.04
+    outputCostPer1mTokens: 6.24
+    overageCostPer1mTokens: 6.24
+  openrouter/qwen/qwen3.6-plus:
+    inputCostPer1mTokens: 0.325
+    outputCostPer1mTokens: 1.95
+    overageCostPer1mTokens: 1.95
+  openrouter/rekaai/reka-edge:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  openrouter/rekaai/reka-flash-3:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.2
+    overageCostPer1mTokens: 0.2
+  openrouter/relace/relace-apply-3:
+    inputCostPer1mTokens: 0.85
+    outputCostPer1mTokens: 1.25
+    overageCostPer1mTokens: 1.25
+  openrouter/relace/relace-search:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  openrouter/sao10k/l3-euryale-70b:
+    inputCostPer1mTokens: 1.48
+    outputCostPer1mTokens: 1.48
+    overageCostPer1mTokens: 1.48
+  openrouter/sao10k/l3-lunaris-8b:
+    inputCostPer1mTokens: 0.04
+    outputCostPer1mTokens: 0.05
+    overageCostPer1mTokens: 0.05
+  openrouter/sao10k/l3.1-70b-hanami-x1:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  openrouter/sao10k/l3.1-euryale-70b:
+    inputCostPer1mTokens: 0.85
+    outputCostPer1mTokens: 0.85
+    overageCostPer1mTokens: 0.85
+  openrouter/sao10k/l3.3-euryale-70b:
+    inputCostPer1mTokens: 0.65
+    outputCostPer1mTokens: 0.75
+    overageCostPer1mTokens: 0.75
+  openrouter/stepfun/step-3.5-flash:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.3
+    overageCostPer1mTokens: 0.3
+  openrouter/switchpoint/router:
+    inputCostPer1mTokens: 0.85
+    outputCostPer1mTokens: 3.4
+    overageCostPer1mTokens: 3.4
+  openrouter/tencent/hunyuan-a13b-instruct:
+    inputCostPer1mTokens: 0.14
+    outputCostPer1mTokens: 0.57
+    overageCostPer1mTokens: 0.57
+  openrouter/tencent/hy3-preview:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/thedrummer/cydonia-24b-v4.1:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/thedrummer/rocinante-12b:
+    inputCostPer1mTokens: 0.17
+    outputCostPer1mTokens: 0.43
+    overageCostPer1mTokens: 0.43
+  openrouter/thedrummer/skyfall-36b-v2:
+    inputCostPer1mTokens: 0.55
+    outputCostPer1mTokens: 0.8
+    overageCostPer1mTokens: 0.8
+  openrouter/thedrummer/unslopnemo-12b:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/tngtech/deepseek-r1t2-chimera:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 1.1
+    overageCostPer1mTokens: 1.1
+  openrouter/undi95/remm-slerp-l2-13b:
+    inputCostPer1mTokens: 0.45
+    outputCostPer1mTokens: 0.65
+    overageCostPer1mTokens: 0.65
+  openrouter/upstage/solar-pro-3:
+    inputCostPer1mTokens: 0.15
+    outputCostPer1mTokens: 0.6
+    overageCostPer1mTokens: 0.6
+  openrouter/writer/palmyra-x5:
+    inputCostPer1mTokens: 0.6
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  openrouter/x-ai/grok-3:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/x-ai/grok-3-beta:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/x-ai/grok-3-mini:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/x-ai/grok-3-mini-beta:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/x-ai/grok-4:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/x-ai/grok-4-fast:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/x-ai/grok-4.1-fast:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  openrouter/x-ai/grok-4.20:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  openrouter/x-ai/grok-4.20-multi-agent:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  openrouter/x-ai/grok-4.3:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  openrouter/x-ai/grok-code-fast-1:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 1.5
+    overageCostPer1mTokens: 1.5
+  openrouter/xiaomi/mimo-v2-flash:
+    inputCostPer1mTokens: 0.09
+    outputCostPer1mTokens: 0.29
+    overageCostPer1mTokens: 0.29
+  openrouter/xiaomi/mimo-v2-omni:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/xiaomi/mimo-v2-pro:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  openrouter/xiaomi/mimo-v2.5:
+    inputCostPer1mTokens: 0.4
+    outputCostPer1mTokens: 2.0
+    overageCostPer1mTokens: 2.0
+  openrouter/xiaomi/mimo-v2.5-pro:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  openrouter/z-ai/glm-4-32b:
+    inputCostPer1mTokens: 0.1
+    outputCostPer1mTokens: 0.1
+    overageCostPer1mTokens: 0.1
+  openrouter/z-ai/glm-4.5:
+    inputCostPer1mTokens: 0.6
+    outputCostPer1mTokens: 2.2
+    overageCostPer1mTokens: 2.2
+  openrouter/z-ai/glm-4.5-air:
+    inputCostPer1mTokens: 0.13
+    outputCostPer1mTokens: 0.85
+    overageCostPer1mTokens: 0.85
+  openrouter/z-ai/glm-4.5-air:free:
+    inputCostPer1mTokens: 0.0
+    outputCostPer1mTokens: 0.0
+    overageCostPer1mTokens: 0.0
+  openrouter/z-ai/glm-4.5v:
+    inputCostPer1mTokens: 0.6
+    outputCostPer1mTokens: 1.8
+    overageCostPer1mTokens: 1.8
+  openrouter/z-ai/glm-4.6:
+    inputCostPer1mTokens: 0.39
+    outputCostPer1mTokens: 1.9
+    overageCostPer1mTokens: 1.9
+  openrouter/z-ai/glm-4.6v:
+    inputCostPer1mTokens: 0.3
+    outputCostPer1mTokens: 0.9
+    overageCostPer1mTokens: 0.9
+  openrouter/z-ai/glm-4.7:
+    inputCostPer1mTokens: 0.38
+    outputCostPer1mTokens: 1.74
+    overageCostPer1mTokens: 1.74
+  openrouter/z-ai/glm-4.7-flash:
+    inputCostPer1mTokens: 0.06
+    outputCostPer1mTokens: 0.4
+    overageCostPer1mTokens: 0.4
+  openrouter/z-ai/glm-5:
+    inputCostPer1mTokens: 0.6
+    outputCostPer1mTokens: 2.08
+    overageCostPer1mTokens: 2.08
+  openrouter/z-ai/glm-5-turbo:
+    inputCostPer1mTokens: 1.2
+    outputCostPer1mTokens: 4.0
+    overageCostPer1mTokens: 4.0
+  openrouter/z-ai/glm-5.1:
+    inputCostPer1mTokens: 1.05
+    outputCostPer1mTokens: 3.5
+    overageCostPer1mTokens: 3.5
+  openrouter/z-ai/glm-5v-turbo:
+    inputCostPer1mTokens: 1.2
+    outputCostPer1mTokens: 4.0
+    overageCostPer1mTokens: 4.0
+  openrouter/~anthropic/claude-haiku-latest:
+    inputCostPer1mTokens: 1.0
+    outputCostPer1mTokens: 5.0
+    overageCostPer1mTokens: 5.0
+  openrouter/~anthropic/claude-opus-latest:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 25.0
+    overageCostPer1mTokens: 25.0
+  openrouter/~anthropic/claude-sonnet-latest:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  openrouter/~google/gemini-flash-latest:
+    inputCostPer1mTokens: 0.5
+    outputCostPer1mTokens: 3.0
+    overageCostPer1mTokens: 3.0
+  openrouter/~google/gemini-pro-latest:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 12.0
+    overageCostPer1mTokens: 12.0
+  openrouter/~moonshotai/kimi-latest:
+    inputCostPer1mTokens: 0.74
+    outputCostPer1mTokens: 3.49
+    overageCostPer1mTokens: 3.49
+  openrouter/~openai/gpt-latest:
+    inputCostPer1mTokens: 5.0
+    outputCostPer1mTokens: 30.0
+    overageCostPer1mTokens: 30.0
+  openrouter/~openai/gpt-mini-latest:
+    inputCostPer1mTokens: 0.75
+    outputCostPer1mTokens: 4.5
+    overageCostPer1mTokens: 4.5
+  xai/grok-4-0709:
+    inputCostPer1mTokens: 3.0
+    outputCostPer1mTokens: 15.0
+    overageCostPer1mTokens: 15.0
+  xai/grok-4-1-fast-non-reasoning:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  xai/grok-4-1-fast-reasoning:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  xai/grok-4-fast-non-reasoning:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  xai/grok-4-fast-reasoning:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 0.5
+    overageCostPer1mTokens: 0.5
+  xai/grok-4.20-0309-non-reasoning:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  xai/grok-4.20-0309-reasoning:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  xai/grok-4.20-multi-agent-0309:
+    inputCostPer1mTokens: 2.0
+    outputCostPer1mTokens: 6.0
+    overageCostPer1mTokens: 6.0
+  xai/grok-4.3:
+    inputCostPer1mTokens: 1.25
+    outputCostPer1mTokens: 2.5
+    overageCostPer1mTokens: 2.5
+  xai/grok-code-fast-1:
+    inputCostPer1mTokens: 0.2
+    outputCostPer1mTokens: 1.5
+    overageCostPer1mTokens: 1.5

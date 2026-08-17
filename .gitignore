@@ -1,0 +1,77 @@
+# ============================================================
+# Dependencies & build output
+# ============================================================
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+dist/
+.turbo/
+backboard.io_nash.egg-info/
+*.egg-info/
+
+# Lockfiles ARE committed for reproducibility:
+#   - package-lock.json
+#   - uv.lock
+#   - packages/data-provider/react-query/package-lock.json
+
+# ============================================================
+# Local config & secrets — never commit
+# ============================================================
+.env
+.env.local
+.env.*.local
+ssm-*.txt
+backboard-models.txt
+
+# ============================================================
+# User uploads / runtime data
+# ============================================================
+uploads/
+
+# ============================================================
+# Test reports & coverage
+# ============================================================
+client/coverage/
+client/junit.xml
+packages/data-provider/coverage/
+packages/data-provider/junit.xml
+test-results/
+playwright-report/
+
+# ============================================================
+# OS / IDE / local clutter
+# ============================================================
+.DS_Store
+.idea/
+.history/
+docs/*.pdf
+docs/*.html
+docs/*.pptx
+docs/work-log/
+docs/figma/
+
+# AI project guidance directories are intentionally tracked:
+# .cursor/
+# .claude/
+# .kiro/
+
+# ============================================================
+# Backboard local runtime data
+# ============================================================
+.backboard/
+
+# Playwright local artifacts (auth state, screenshots, traces) — never commit
+e2e/.*/
+
+# Local agent / editor instructions
+AGENTS.md
+.claude/
+.cursor/
+.kiro/
+
+# graphify generated knowledge-graph output
+graphify-out/
+
+# Local latency-probe measurement output (scripts/perf_probe.py --csv)
+perf.csv
